@@ -1,6 +1,6 @@
 import "./globals.css"
 import { Inter } from "next/font/google"
-import LeftMenu from "./components/LeftMenu"
+import LeftMenu from "@/app/components/LeftMenu"
 import { ThemeProvider } from "./components/theme-provider"
 import type React from "react"
 
