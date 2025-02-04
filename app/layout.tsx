@@ -19,14 +19,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <div className="flex">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light" // Changed from "system" to "light"
+          enableSystem={false} // Changed to false to prevent system override
+          disableTransitionOnChange
+        >
+          <div className="flex flex-col md:flex-row min-h-screen">
             <LeftMenu />
-            <main className="flex-1 p-8">{children}</main>
+            <main className="flex-1 p-4 md:p-8 overflow-auto">{children}</main>
           </div>
         </ThemeProvider>
       </body>
     </html>
   )
 }
-
