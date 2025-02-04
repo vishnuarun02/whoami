@@ -1,7 +1,9 @@
+"use client"
+
 import Link from "next/link"
 import { ThemeToggle } from "./theme-toggle"
 import { useState } from "react"
-import { Menu, X } from "lucide-react" // You already have lucide-react installed
+import { Menu, X } from "lucide-react"
 
 const menuItems = [
   {
@@ -55,7 +57,7 @@ export default function LeftMenu() {
                     <Link
                       href={`/${item.title.toLowerCase()}/${subItem.toLowerCase().replace(" ", "-")}`}
                       className="text-muted-foreground hover:text-primary transition-colors inline-block relative group"
-                      onClick={() => setIsMenuOpen(false)} // Close menu when link is clicked on mobile
+                      onClick={() => setIsMenuOpen(false)}
                     >
                       {subItem === "bucketlist" ? `${subItem} 🔒` : subItem}
                       <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
