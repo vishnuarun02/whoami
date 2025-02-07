@@ -95,7 +95,6 @@ function getRandomFood() {
 function getRandomColor() {
   const colors = [
     "rgb(13, 33, 73)",  // Deep Indigo
-    "rgb(32, 138, 174)", // Dark Ocean
     "rgb(50, 63, 27)",   // Forest Pine 
   ]
   return colors[Math.floor(Math.random() * colors.length)]
