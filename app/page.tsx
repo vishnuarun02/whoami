@@ -1,8 +1,10 @@
 'use client'
 import Link from "next/link"
 import { useState } from "react"
+import { useTheme } from "next-themes"
 
 export default function Home() {
+  const { theme } = useTheme()
   const [bgColor] = useState(getRandomColor())
 
   return (
@@ -10,10 +12,10 @@ export default function Home() {
       <h1 className="text-4xl font-heading mb-6">Welcome, Internet Traveler</h1>
 
       <div
-        className={`text-background p-6 rounded-lg mb-8 transition-colors duration-500 ease-in-out`}
+        className="p-6 rounded-lg mb-8 text-[#f5f5dc] text-xl"
         style={{ backgroundColor: bgColor }}
       >
-        <p className="text-lg mb-4">
+        <p className="mb-4">
           You've stumbled upon the digital realm of Vishnu Arun. Make yourself comfortable while my AI assistant
           prepares you a virtual plate of...
           <span className="font-bold">{getRandomFood()}</span>
@@ -57,14 +59,14 @@ function SectionPreview({
 }: { title: string; description: string; links: { name: string; href: string }[] }) {
   return (
     <div className="border border-border p-6 rounded-lg">
-      <h2 className="text-2xl font-heading mb-4">{title}</h2>
-      <p className="mb-4">{description}</p>
-      <ul className="space-y-2">
+      <h2 className="text-3xl font-heading mb-4">{title}</h2>
+      <p className="text-xl mb-4">{description}</p>
+      <ul className="space-y-3">
         {links.map((link, index) => (
           <li key={index}>
             <Link
               href={link.href}
-              className="text-muted-foreground hover:text-primary transition-colors inline-block relative group"
+              className="text-lg text-muted-foreground hover:text-primary transition-colors inline-block relative group"
             >
               → {link.name}
               <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
@@ -78,36 +80,23 @@ function SectionPreview({
 
 function getRandomFood() {
   const foods = [
-    { name: "Takoyaki", emoji: "🐙" },
-    { name: "Okonomiyaki", emoji: "🥞" },
-    { name: "Tamagoyaki", emoji: "🍳" },
-    { name: "Mochi Ice Cream", emoji: "🍡" },
-    { name: "Matcha Kit Kat", emoji: "🍵" },
-    { name: "Dorayaki", emoji: "🥮" },
-    { name: "Daifuku", emoji: "🍡" },
-    { name: "Taiyaki", emoji: "🐟" },
-    { name: "Butter Chicken", emoji: "🍗" },
-    { name: "Palak Paneer", emoji: "🧀" },
-    { name: "Biryani", emoji: "🍚" },
-    { name: "Samosa", emoji: "🥟" },
-    { name: "Dosa", emoji: "🥞" },
-    { name: "Gulab Jamun", emoji: "🍯" },
+    { name: "Takoyaki!", emoji: "🐙" },
+    { name: "Okonomiyaki!", emoji: "🥞" },
+    { name: "Tamagoyaki!", emoji: "🍳" },
+    { name: "Mochi IceCream!", emoji: "🍡" },
+    { name: "Matcha KitKat!", emoji: "🍵" },
+    { name: "Dorayaki!", emoji: "🥮" },
+    { name: "Daifuku!", emoji: "🍡" },
+    { name: "Sushi!", emoji: "🐟" },
   ]
-  const food = foods[Math.floor(Math.random() * foods.length)]
-  return `${food.name} ${food.emoji}`
+  return `${foods[Math.floor(Math.random() * foods.length)].name} ${foods[Math.floor(Math.random() * foods.length)].emoji}`
 }
 
 function getRandomColor() {
   const colors = [
-    "#2A4858", // Deep blue-gray
-    "#445D48", // Forest green
-    "#4F4557", // Deep purple-gray
-    "#5C3D2E", // Rich brown
-    "#2D4356", // Navy blue
-    "#394867", // Slate blue
-    "#3F2E3E", // Deep burgundy
-    "#4C3A51", // Plum
+    "rgb(13, 33, 73)",  // Deep Indigo
+    "rgb(32, 138, 174)", // Dark Ocean
+    "rgb(50, 63, 27)",   // Forest Pine 
   ]
   return colors[Math.floor(Math.random() * colors.length)]
 }
-
