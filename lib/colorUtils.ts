@@ -2,7 +2,6 @@
 
 export const colors = [
     "rgb(57, 115, 103)",  // Green
-    "rgb(32, 138, 174)",  // Blue
     "rgb(139, 99, 92)",   // Brown
 ] as const;
 
