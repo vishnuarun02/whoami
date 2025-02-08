@@ -6,9 +6,12 @@ import Image from "next/image"
 
 export default function Home() {
   const { theme } = useTheme()
+  const [bgColor, setBgColor] = useState("")
 
-  // Rotate through colors instead of picking randomly
-  const [bgColor, setBgColor] = useState(getNextColor())
+  // Use useEffect to set the color when component mounts
+  useEffect(() => {
+    setBgColor(getNextColor())
+  }, [])
 
   return (
     <div className="font-body h-screen flex flex-col justify-center items-center">
@@ -44,21 +47,22 @@ export default function Home() {
   )
 }
 
-// Keeps cycling through colors instead of picking randomly
+// Properly cycles through colors in order
 function getNextColor() {
   const colors = [
-    "rgb(57, 115, 103)",
-    "rgb(32, 138, 174)",
-    "rgb(139, 99, 92)",
+    "rgb(57, 115, 103)",  // Green
+    "rgb(32, 138, 174)",  // Blue
+    "rgb(139, 99, 92)",   // Brown
   ]
 
   if (typeof window !== "undefined") {
-    const index = (parseInt(localStorage.getItem("colorIndex") || "0", 10) + 1) % colors.length;
-    localStorage.setItem("colorIndex", index.toString());
-    return colors[index];
+    let index = parseInt(localStorage.getItem("colorIndex") || "0", 10)
+    index = (index + 1) % colors.length // Increment and loop back
+    localStorage.setItem("colorIndex", index.toString())
+    return colors[index]
   }
 
-  return colors[0]; // Default color
+  return colors[0] // Default color if localStorage is unavailable
 }
 
 function getRandomFood() {
@@ -72,8 +76,8 @@ function getRandomFood() {
     { name: "Tonkotsu Ramen!", emoji: " 🐷" },
     { name: "Yudofu!", emoji: " 🥬" },
     { name: "Nikuman!", emoji: " 🥟" },
-  ];
+  ]
 
-  const randomFood = foods[Math.floor(Math.random() * foods.length)];
-  return `${randomFood.emoji} ${randomFood.name}`;
+  const randomFood = foods[Math.floor(Math.random() * foods.length)]
+  return `${randomFood.emoji} ${randomFood.name}`
 }
