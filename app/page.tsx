@@ -12,7 +12,8 @@ export default function Home() {
       <h1 className="text-4xl font-heading mb-6">Welcome, Internet Traveler</h1>
 
       <div
-        className="p-6 rounded-lg mb-8 text-[#f5f5dc] text-xl"
+        className={`p-6 rounded-lg mb-8 text-xl ${theme === 'dark' ? 'text-white' : 'text-white'
+          }`}
         style={{ backgroundColor: bgColor }}
       >
         <p className="mb-4">
@@ -94,8 +95,10 @@ function getRandomFood() {
 
 function getRandomColor() {
   const colors = [
-    "rgb(13, 33, 73)",  // Deep Indigo
-    "rgb(50, 63, 27)",   // Forest Pine 
+    //"rgb(66, 133, 140)", 
+    "rgb(57, 115, 103)", 
+    "rgb(32, 138, 174)",
+    "rgb(139, 99, 92)",
   ]
   return colors[Math.floor(Math.random() * colors.length)]
 }
