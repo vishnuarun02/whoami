@@ -17,8 +17,8 @@ export default function Home() {
         style={{ backgroundColor: bgColor }}
       >
         <p className="mb-4">
-          You've entered the digital realm of Vishnu Arun. Make yourself comfortable while my AI assistant
-          prepares you a virtual plate of
+          You're entering the digital realm of a magical swordsman. Make yourself comfortable while my gnome
+          cooks a steaming hot plate of
           <span className="font-bold">{getRandomFood()}</span>
         </p>
         <p>
@@ -81,16 +81,19 @@ function SectionPreview({
 
 function getRandomFood() {
   const foods = [
-    { name: " Takoyaki!", emoji: "🐙" },
-    { name: " Okonomiyaki!", emoji: "🥞" },
-    { name: " Tamagoyaki!", emoji: "🍳" },
-    { name: " Mochi IceCream!", emoji: "🍡" },
-    { name: " Matcha KitKat!", emoji: "🍵" },
-    { name: " Dorayaki!", emoji: "🥮" },
-    { name: " Daifuku!", emoji: "🍡" },
-    { name: " Sushi!", emoji: "🐟" },
-  ]
-  return `${foods[Math.floor(Math.random() * foods.length)].name} ${foods[Math.floor(Math.random() * foods.length)].emoji}`
+    { name: "Ramen!", emoji: " 🍜" },
+    { name: "Udon!", emoji: " 🥢" },
+    { name: "Soba!", emoji: " 🍲" },
+    { name: "Shabu-Shabu!", emoji: " 🫕" },
+    { name: "Sukiyaki!", emoji: " 🥩" },
+    { name: "Oden!", emoji: " 🍢" },
+    { name: "Tonkotsu Ramen!", emoji: " 🐷" },
+    { name: "Yudofu!", emoji: " 🥬" },
+    { name: "Nikuman!", emoji: " 🥟" },
+  ];
+
+  const randomFood = foods[Math.floor(Math.random() * foods.length)];
+  return `${randomFood.emoji} ${randomFood.name}`;
 }
 
 function getRandomColor() {
