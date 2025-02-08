@@ -1,18 +1,21 @@
 'use client'
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
+import Image from "next/image"
 
 export default function Home() {
   const { theme } = useTheme()
-  const [bgColor] = useState(getRandomColor())
+
+  // Rotate through colors instead of picking randomly
+  const [bgColor, setBgColor] = useState(getNextColor())
 
   return (
-    <div className="font-body">
-      <h1 className="text-4xl font-heading mb-6">Welcome, Internet Traveler</h1>
+    <div className="font-body h-screen flex flex-col justify-center items-center">
+      <h1 className="text-4xl font-heading mb-2">Welcome, Internet Traveler</h1>
 
       <div
-        className={`p-6 rounded-lg mb-8 text-xl ${theme === 'dark' ? 'text-white' : 'text-white'
+        className={`p-6 rounded-lg mb-4 text-xl ${theme === 'dark' ? 'text-white' : 'text-white'
           }`}
         style={{ backgroundColor: bgColor }}
       >
@@ -27,56 +30,35 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <SectionPreview
-          title="About"
-          description="Dive into my background, current endeavors, and professional journey."
-          links={[
-            { name: "Prologue", href: "/about/prologue" },
-            { name: "Now", href: "/about/now" },
-            { name: "Resume", href: "/about/resume" },
-            { name: "Projects", href: "/about/projects" },
-          ]}
-        />
-        <SectionPreview
-          title="LifeLog"
-          description="Explore my personal experiences, thoughts, and creative pursuits."
-          links={[
-            { name: "Bookshelf", href: "/lifelog/bookshelf" },
-            { name: "Blogs", href: "/lifelog/blogs" },
-            { name: "Photo Album", href: "/lifelog/photo-album" },
-            { name: "Thoughts", href: "/lifelog/thoughts" },
-          ]}
+      {/* Full-width responsive image, ensuring it fits without scrolling */}
+      <div className="w-full max-w-screen-lg flex justify-center items-center">
+        <Image
+          src="/Welcome page pic.png"
+          alt="Welcome Page Image"
+          width={1200}
+          height={600}
+          className="w-full h-auto rounded-lg shadow-lg object-contain"
         />
       </div>
     </div>
   )
 }
 
-function SectionPreview({
-  title,
-  description,
-  links,
-}: { title: string; description: string; links: { name: string; href: string }[] }) {
-  return (
-    <div className="border border-border p-6 rounded-lg">
-      <h2 className="text-3xl font-heading mb-4">{title}</h2>
-      <p className="text-xl mb-4">{description}</p>
-      <ul className="space-y-3">
-        {links.map((link, index) => (
-          <li key={index}>
-            <Link
-              href={link.href}
-              className="text-lg text-muted-foreground hover:text-primary transition-colors inline-block relative group"
-            >
-              → {link.name}
-              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
+// Keeps cycling through colors instead of picking randomly
+function getNextColor() {
+  const colors = [
+    "rgb(57, 115, 103)",
+    "rgb(32, 138, 174)",
+    "rgb(139, 99, 92)",
+  ]
+
+  if (typeof window !== "undefined") {
+    const index = (parseInt(localStorage.getItem("colorIndex") || "0", 10) + 1) % colors.length;
+    localStorage.setItem("colorIndex", index.toString());
+    return colors[index];
+  }
+
+  return colors[0]; // Default color
 }
 
 function getRandomFood() {
@@ -94,14 +76,4 @@ function getRandomFood() {
 
   const randomFood = foods[Math.floor(Math.random() * foods.length)];
   return `${randomFood.emoji} ${randomFood.name}`;
-}
-
-function getRandomColor() {
-  const colors = [
-    //"rgb(66, 133, 140)", 
-    "rgb(57, 115, 103)",
-    "rgb(32, 138, 174)",
-    "rgb(139, 99, 92)",
-  ]
-  return colors[Math.floor(Math.random() * colors.length)]
 }
