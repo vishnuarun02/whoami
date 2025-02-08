@@ -6,8 +6,8 @@ import { getPageColor, initializeColor } from "@/lib/colorUtils"
 
 export default function Home() {
   const { theme } = useTheme()
-  const [bgColor, setBgColor] = useState(getPageColor())
-  const [food, setFood] = useState("")
+  const [bgColor, setBgColor] = useState<string>("")
+  const [food, setFood] = useState<string>("")
 
   const getRandomFood = useCallback(() => {
     const foods = [
@@ -26,40 +26,40 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    // Initialize color on mount
-    initializeColor()
-    
-    // Set initial food
-    setFood(getRandomFood())
-
-    // Function to handle color updates
-    const updateColor = () => {
+    if (typeof window !== "undefined") {
+      // Initialize color on mount
+      initializeColor()
       setBgColor(getPageColor())
-    }
 
-    // Listen for storage changes
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === 'currentColorIndex') {
+      // Set initial food
+      setFood(getRandomFood())
+
+      // Function to handle color updates
+      const updateColor = () => {
+        setBgColor(getPageColor())
+      }
+
+      // Listen for storage changes
+      const handleStorageChange = (e: StorageEvent) => {
+        if (e.key === 'currentColorIndex') {
+          updateColor()
+        }
+      }
+
+      // Listen for custom color change event
+      const handleColorChange = () => {
         updateColor()
       }
-    }
 
-    // Listen for custom color change event
-    const handleColorChange = () => {
-      updateColor()
-    }
+      // Add event listeners
+      window.addEventListener('storage', handleStorageChange)
+      window.addEventListener('colorChange', handleColorChange)
 
-    // Add event listeners
-    window.addEventListener('storage', handleStorageChange)
-    window.addEventListener('colorChange', handleColorChange)
-
-    // Update color immediately
-    updateColor()
-
-    // Cleanup
-    return () => {
-      window.removeEventListener('storage', handleStorageChange)
-      window.removeEventListener('colorChange', handleColorChange)
+      return () => {
+        // Cleanup event listeners
+        window.removeEventListener('storage', handleStorageChange)
+        window.removeEventListener('colorChange', handleColorChange)
+      }
     }
   }, [getRandomFood])
 

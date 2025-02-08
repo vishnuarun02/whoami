@@ -16,39 +16,38 @@ const menuItems = [
 ]
 
 export default function LeftMenu() {
-  const [menuColor, setMenuColor] = useState(getPageColor())
+  const [menuColor, setMenuColor] = useState<string>("")
 
   useEffect(() => {
-    // Initialize color on first load
-    initializeColor()
-    
-    // Update color immediately
-    setMenuColor(getPageColor())
-
-    // Function to handle storage changes
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === 'currentColorIndex') {
-        setMenuColor(getPageColor())
-      }
-    }
-
-    // Function to handle clicks on the title
-    const handleTitleClick = () => {
-      cycleColor()
+    if (typeof window !== "undefined") {
+      // Initialize color on first load
+      initializeColor()
       setMenuColor(getPageColor())
-      // Dispatch a custom event to notify other components
-      window.dispatchEvent(new Event('colorChange'))
-    }
 
-    // Add event listeners
-    window.addEventListener('storage', handleStorageChange)
-    const titleElement = document.querySelector('.title-click')
-    titleElement?.addEventListener('click', handleTitleClick)
+      // Handle localStorage updates
+      const handleStorageChange = (e: StorageEvent) => {
+        if (e.key === 'currentColorIndex') {
+          setMenuColor(getPageColor())
+        }
+      }
 
-    // Cleanup
-    return () => {
-      window.removeEventListener('storage', handleStorageChange)
-      titleElement?.removeEventListener('click', handleTitleClick)
+      // Handle color change event
+      const handleTitleClick = () => {
+        cycleColor()
+        setMenuColor(getPageColor())
+        window.dispatchEvent(new Event('colorChange'))
+      }
+
+      // Add event listeners
+      window.addEventListener('storage', handleStorageChange)
+      const titleElement = document.querySelector('.title-click')
+      titleElement?.addEventListener('click', handleTitleClick)
+
+      return () => {
+        // Cleanup event listeners
+        window.removeEventListener('storage', handleStorageChange)
+        titleElement?.removeEventListener('click', handleTitleClick)
+      }
     }
   }, [])
 
@@ -58,9 +57,7 @@ export default function LeftMenu() {
         <Link href="/" className="block">
           <h1 
             className="text-2xl font-heading whitespace-nowrap transition-colors hover:text-[var(--menu-color)] title-click cursor-pointer"
-            style={{ 
-              '--menu-color': menuColor
-            } as React.CSSProperties}
+            style={{ '--menu-color': menuColor } as React.CSSProperties}
           >
             Vishnu Arun
           </h1>
