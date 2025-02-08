@@ -6,13 +6,32 @@ export const colors = [
     "rgb(139, 99, 92)",   // Brown
 ] as const;
 
-// Instead of using localStorage directly, let's track the current page load
-let currentColorIndex = 0;
+const COLOR_INDEX_KEY = 'currentColorIndex';
 
 export function getPageColor(): string {
-    return colors[currentColorIndex];
+    // Get the stored index from localStorage, or default to 0
+    const storedIndex = localStorage.getItem(COLOR_INDEX_KEY);
+    const currentIndex = storedIndex ? parseInt(storedIndex) : 0;
+    return colors[currentIndex];
 }
 
 export function cycleColor(): void {
-    currentColorIndex = (currentColorIndex + 1) % colors.length;
+    // Get current index
+    const storedIndex = localStorage.getItem(COLOR_INDEX_KEY);
+    const currentIndex = storedIndex ? parseInt(storedIndex) : 0;
+
+    // Calculate next index
+    const nextIndex = (currentIndex + 1) % colors.length;
+
+    // Store the new index
+    localStorage.setItem(COLOR_INDEX_KEY, nextIndex.toString());
+}
+
+// Optional: Add a function to initialize the color on first load
+export function initializeColor(): void {
+    if (!localStorage.getItem(COLOR_INDEX_KEY)) {
+        // If no color index is stored, start with a random color
+        const randomIndex = Math.floor(Math.random() * colors.length);
+        localStorage.setItem(COLOR_INDEX_KEY, randomIndex.toString());
+    }
 }

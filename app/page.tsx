@@ -2,14 +2,13 @@
 import { useState, useEffect, useCallback } from "react"
 import { useTheme } from "next-themes"
 import Image from "next/image"
-import { getPageColor } from "@/lib/colorUtils"
+import { getPageColor, initializeColor } from "@/lib/colorUtils"
 
 export default function Home() {
   const { theme } = useTheme()
-  const [bgColor, setBgColor] = useState(getPageColor()) // Initialize immediately
-  const [food, setFood] = useState("") // Store food separately
+  const [bgColor, setBgColor] = useState(getPageColor())
+  const [food, setFood] = useState("")
 
-  // Get random food only once when component mounts
   const getRandomFood = useCallback(() => {
     const foods = [
       { name: "Ramen!", emoji: " 🍜" },
@@ -26,9 +25,42 @@ export default function Home() {
     return `${randomFood.emoji} ${randomFood.name}`
   }, [])
 
-  // Set food only once when component mounts
   useEffect(() => {
+    // Initialize color on mount
+    initializeColor()
+    
+    // Set initial food
     setFood(getRandomFood())
+
+    // Function to handle color updates
+    const updateColor = () => {
+      setBgColor(getPageColor())
+    }
+
+    // Listen for storage changes
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'currentColorIndex') {
+        updateColor()
+      }
+    }
+
+    // Listen for custom color change event
+    const handleColorChange = () => {
+      updateColor()
+    }
+
+    // Add event listeners
+    window.addEventListener('storage', handleStorageChange)
+    window.addEventListener('colorChange', handleColorChange)
+
+    // Update color immediately
+    updateColor()
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+      window.removeEventListener('colorChange', handleColorChange)
+    }
   }, [getRandomFood])
 
   return (

@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { ThemeToggle } from "./theme-toggle"
 import { useState, useEffect } from "react"
-import { getPageColor } from "@/lib/colorUtils"
+import { getPageColor, cycleColor, initializeColor } from "@/lib/colorUtils"
 
 const menuItems = [
   {
@@ -16,15 +16,40 @@ const menuItems = [
 ]
 
 export default function LeftMenu() {
-  const [menuColor, setMenuColor] = useState("")
+  const [menuColor, setMenuColor] = useState(getPageColor())
 
   useEffect(() => {
-    const updateColor = () => {
-      setMenuColor(getPageColor())
+    // Initialize color on first load
+    initializeColor()
+    
+    // Update color immediately
+    setMenuColor(getPageColor())
+
+    // Function to handle storage changes
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'currentColorIndex') {
+        setMenuColor(getPageColor())
+      }
     }
-    updateColor()
-    window.addEventListener('storage', updateColor)
-    return () => window.removeEventListener('storage', updateColor)
+
+    // Function to handle clicks on the title
+    const handleTitleClick = () => {
+      cycleColor()
+      setMenuColor(getPageColor())
+      // Dispatch a custom event to notify other components
+      window.dispatchEvent(new Event('colorChange'))
+    }
+
+    // Add event listeners
+    window.addEventListener('storage', handleStorageChange)
+    const titleElement = document.querySelector('.title-click')
+    titleElement?.addEventListener('click', handleTitleClick)
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+      titleElement?.removeEventListener('click', handleTitleClick)
+    }
   }, [])
 
   return (
@@ -32,7 +57,7 @@ export default function LeftMenu() {
       <div className="flex items-center justify-between mb-12">
         <Link href="/" className="block">
           <h1 
-            className="text-2xl font-heading whitespace-nowrap transition-colors hover:text-[var(--menu-color)]"
+            className="text-2xl font-heading whitespace-nowrap transition-colors hover:text-[var(--menu-color)] title-click cursor-pointer"
             style={{ 
               '--menu-color': menuColor
             } as React.CSSProperties}
