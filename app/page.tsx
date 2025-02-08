@@ -17,12 +17,12 @@ export default function Home() {
         style={{ backgroundColor: bgColor }}
       >
         <p className="mb-4">
-          You've stumbled upon the digital realm of Vishnu Arun. Make yourself comfortable while my AI assistant
-          prepares you a virtual plate of...
+          You've entered the digital realm of Vishnu Arun. Make yourself comfortable while my AI assistant
+          prepares you a virtual plate of
           <span className="font-bold">{getRandomFood()}</span>
         </p>
         <p>
-          Feel free to explore the various corners of this cyber-space. Each section is a window into my world of
+          Feel free to explore various corners of this cyber-space. Each section is a window into my world of
           technology, creativity, and random musings.
         </p>
       </div>
@@ -81,14 +81,14 @@ function SectionPreview({
 
 function getRandomFood() {
   const foods = [
-    { name: "Takoyaki!", emoji: "🐙" },
-    { name: "Okonomiyaki!", emoji: "🥞" },
-    { name: "Tamagoyaki!", emoji: "🍳" },
-    { name: "Mochi IceCream!", emoji: "🍡" },
-    { name: "Matcha KitKat!", emoji: "🍵" },
-    { name: "Dorayaki!", emoji: "🥮" },
-    { name: "Daifuku!", emoji: "🍡" },
-    { name: "Sushi!", emoji: "🐟" },
+    { name: " Takoyaki!", emoji: "🐙" },
+    { name: " Okonomiyaki!", emoji: "🥞" },
+    { name: " Tamagoyaki!", emoji: "🍳" },
+    { name: " Mochi IceCream!", emoji: "🍡" },
+    { name: " Matcha KitKat!", emoji: "🍵" },
+    { name: " Dorayaki!", emoji: "🥮" },
+    { name: " Daifuku!", emoji: "🍡" },
+    { name: " Sushi!", emoji: "🐟" },
   ]
   return `${foods[Math.floor(Math.random() * foods.length)].name} ${foods[Math.floor(Math.random() * foods.length)].emoji}`
 }
@@ -96,7 +96,7 @@ function getRandomFood() {
 function getRandomColor() {
   const colors = [
     //"rgb(66, 133, 140)", 
-    "rgb(57, 115, 103)", 
+    "rgb(57, 115, 103)",
     "rgb(32, 138, 174)",
     "rgb(139, 99, 92)",
   ]
