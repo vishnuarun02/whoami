@@ -5,6 +5,20 @@ export const colors = [
     "rgb(139, 99, 92)",   // Brown
 ] as const;
 
+// Extended color palettes based on your main colors
+export const colorPalettes = {
+    green: {
+        base: "rgb(57, 115, 103)",    // Your current green
+        dark: "rgb(42, 90, 80)",      // Darker variant
+        light: "rgb(78, 140, 126)",   // Lighter variant
+    },
+    brown: {
+        base: "rgb(139, 99, 92)",     // Your current brown
+        dark: "rgb(112, 77, 71)",     // Darker variant
+        light: "rgb(166, 127, 119)",  // Lighter variant
+    }
+} as const;
+
 const COLOR_INDEX_KEY = 'currentColorIndex';
 
 export function getPageColor(): string {
