@@ -49,9 +49,9 @@ export default function LeftMenu() {
   return (
     <nav className="w-64 h-screen bg-background border-r border-border p-6">
       <div className="flex flex-row justify-between items-center mb-12 w-full">
-        <Link href="/" className="flex-shrink-0">
+        <Link href="/" className="flex items-center flex-shrink-0">
           <h1
-            className="text-2xl font-heading whitespace-nowrap transition-colors hover:text-[var(--menu-color)] title-click cursor-pointer"
+            className="m-0 text-2xl font-heading whitespace-nowrap transition-colors hover:text-[var(--menu-color)] title-click cursor-pointer"
             style={{ '--menu-color': menuColor } as React.CSSProperties}
           >
             Vishnu Arun
@@ -61,7 +61,6 @@ export default function LeftMenu() {
           <ThemeToggle />
         </div>
       </div>
-
       <ul className="space-y-6">
         {menuItems.map((item) => (
           <li key={item.title}>
