@@ -20,19 +20,19 @@ export default function Now() {
           Machine Learning
         </span>
         <span 
-          style={{ backgroundColor: 'rgb(139, 99, 92)' }}
+          style={{ backgroundColor: 'rgb(199, 124, 92)' }}
           className="text-white px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 hover:opacity-90"
         >
           Analytics
         </span>
         <span 
-          style={{ backgroundColor: 'rgb(42, 90, 80)' }}
+          style={{ backgroundColor: 'rgb(120, 81, 169' }}
           className="text-white px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 hover:opacity-90"
         >
           Writing
         </span>
         <span 
-          style={{ backgroundColor: 'rgb(112, 77, 71)' }}
+          style={{ backgroundColor: 'rgb(91, 127, 152)' }}
           className="text-white px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 hover:opacity-90"
         >
           Data Science
