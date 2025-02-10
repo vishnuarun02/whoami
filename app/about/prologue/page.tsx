@@ -1,12 +1,12 @@
 export default function Prologue() {
   return (
-    <div className="font-body">
+    <div className="font-body p-4 md:p-6">
       <h1 className="text-4xl font-heading mb-6">Prologue</h1>
-      <p className="mb-4">
+      <p className="mb-4 text-base">
         Welcome to my digital space. I&apos;m Vishnu Arun, a passionate technologist and creative thinker. This prologue
         serves as an introduction to my journey and the experiences that have shaped me.
       </p>
-      <p className="mb-4">
+      <p className="mb-4 text-base">
         My background spans various fields, including software development, design, and problem-solving. I&apos;m
         constantly exploring new technologies and ideas, always eager to learn and grow.
       </p>
@@ -18,4 +18,3 @@ export default function Prologue() {
     </div>
   )
 }
-
