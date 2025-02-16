@@ -73,7 +73,7 @@ export default function Home() {
       >
         <p className="mb-4">
           You're entering the digital realm of a magical swordsman. Make yourself comfortable while grandpa gnome
-          chef's up a steaming hot bowl of
+          cooks a steaming hot bowl of
           <span className="font-bold">{food}</span>
         </p>
         <p>
