@@ -16,10 +16,10 @@ export default function Home() {
       { name: "Soba!", emoji: " 🍲" },
       { name: "Shabu-Shabu!", emoji: " 🫕" },
       { name: "Sukiyaki!", emoji: " 🥩" },
-      { name: "Enchanted Eyeball Soup!", emoji: " 🔮" },
+      { name: "Enchanted Eyeball Soup!", emoji: " 🥣" },
       { name: "Dragon's Nostril Honey!", emoji: " 🍯" },
       { name: "Ogre's Earwax Pudding!", emoji: " 🍮" },
-      { name: "Goblin's Sock Stew!", emoji: " 🥬" },
+      { name: "Goblin's Sock Stew!", emoji: " 🧌" },
       { name: "Swamp Slug Slime Smoothie!", emoji: " 🥤" },
     ]
     const randomFood = foods[Math.floor(Math.random() * foods.length)]
@@ -73,8 +73,8 @@ export default function Home() {
         style={{ backgroundColor: bgColor }}
       >
         <p className="mb-4">
-          You're entering the digital realm of a Magical Swordsman. Make yourself comfortable while Grandpa Gnome
-          chefs up a steaming hot bowl of
+          You're entering the digital realm of a Magical Swordsman. Make yourself comfortable while 🧙🏼‍♂️ Grandpa Gnome
+          chefs up a yummy bowl of
           <span className="font-bold">{food}</span>
         </p>
         <p>
