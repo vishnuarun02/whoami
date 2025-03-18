@@ -16,10 +16,11 @@ export default function Home() {
       { name: "Soba!", emoji: " 🍲" },
       { name: "Shabu-Shabu!", emoji: " 🫕" },
       { name: "Sukiyaki!", emoji: " 🥩" },
-      { name: "Oden!", emoji: " 🍢" },
-      { name: "Tonkotsu Ramen!", emoji: " 🐷" },
-      { name: "Yudofu!", emoji: " 🥬" },
-      { name: "Nikuman!", emoji: " 🥟" },
+      { name: "Enchanted Eyeball Soup!", emoji: " 🔮" },
+      { name: "Dragon's Nostril Honey!", emoji: " 🍯" },
+      { name: "Ogre's Earwax Pudding!", emoji: " 🍮" },
+      { name: "Goblin's Sock Stew!", emoji: " 🥬" },
+      { name: "Swamp Slug Slime Smoothie!", emoji: " 🥤" },
     ]
     const randomFood = foods[Math.floor(Math.random() * foods.length)]
     return `${randomFood.emoji} ${randomFood.name}`
