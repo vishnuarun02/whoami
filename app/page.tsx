@@ -8,6 +8,8 @@ export default function Home() {
   const { theme } = useTheme()
   const [bgColor, setBgColor] = useState<string>("")
   const [food, setFood] = useState<string>("")
+  const [currentSeason, setCurrentSeason] = useState<string>("")
+  const [seasonalImage, setSeasonalImage] = useState<string>("/Welcome page pic.png")
 
   const getRandomFood = useCallback(() => {
     const foods = [
@@ -25,14 +27,45 @@ export default function Home() {
     return `${randomFood.emoji} ${randomFood.name}`
   }, [])
 
+  const determineSeason = useCallback(() => {
+    const month = new Date().getMonth();
+    // 0-11: Jan is 0, Dec is 11
+
+    if (month >= 2 && month <= 4) {
+      return "spring"; // March, April, May
+    } else if (month >= 5 && month <= 7) {
+      return "summer"; // June, July, August
+    } else if (month >= 8 && month <= 10) {
+      return "autumn"; // September, October, November
+    } else {
+      return "winter"; // December, January, February
+    }
+  }, []);
+  // Function to get seasonal image path
+  const getSeasonalImage = useCallback((season: string) => {
+    const seasonalImages = {
+      spring: "/images/seasonal/spring-welcome.png",
+      summer: "/images/seasonal/summer-welcome.png",
+      autumn: "/images/seasonal/autumn-welcome.png",
+      winter: "/images/seasonal/winter-welcome.png"
+    };
+
+    return seasonalImages[season as keyof typeof seasonalImages] || "/Welcome page pic.png";
+  }, []); // Remove [getCurrentSeason] as it's not defined
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       // Initialize color on mount
-      initializeColor()
-      setBgColor(getPageColor())
+      initializeColor();
+      setBgColor(getPageColor());
 
       // Set initial food
-      setFood(getRandomFood())
+      setFood(getRandomFood());
+
+      // Determine season and set image
+      const season = determineSeason();
+      setCurrentSeason(season);
+      setSeasonalImage(getSeasonalImage(season)); // Pass season as parameter
 
       // Function to handle color updates
       const updateColor = () => {
@@ -61,7 +94,7 @@ export default function Home() {
         window.removeEventListener('colorChange', handleColorChange)
       }
     }
-  }, [getRandomFood])
+  }, [getRandomFood, determineSeason, getSeasonalImage])
 
   return (
     <div className="font-body h-screen flex flex-col justify-center items-center">
@@ -84,8 +117,8 @@ export default function Home() {
 
       <div className="w-full max-w-screen-lg flex justify-center items-center">
         <Image
-          src="/Welcome page pic.png"
-          alt="Welcome Page Image"
+          src={seasonalImage}
+          alt={`Welcome Page Image (${currentSeason})`}
           width={1200}
           height={600}
           className="w-full h-auto rounded-lg shadow-lg object-contain"
