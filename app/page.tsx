@@ -17,75 +17,54 @@ export default function Home() {
     { name: "Ogre's Earwax Pudding!", emoji: " 🍮", description: "Golden, gooey, & crunchy at right places" },
     { name: "Tapeworm Tempura!", emoji: " 🪱", description: "Fried golden, served still wiggling for freshness" },
     { name: "Sukiyaki!", emoji: " 🥩", description: "Beef so tender - it cried before we cooked it." },
-    { name: "Fairy's Eyeball Stew!", emoji: " 🥣", description: "Freshly plucked — stares lovingly while you sip." },
+    { name: "Mermaid's Eyeball Stew!", emoji: " 🥣", description: "Freshly plucked — stares lovingly while you sip." },
     { name: "Moldy Mushroom Muffins!", emoji: " 🍄", description: "Expired for maximum taste — Penicillin optional" },
     { name: "Phoenix Feather Salad!", emoji: " 🥗", description: "Lightly charred — refills itself every 5 minutes." },
   ]
 
-  const [randomFood, setRandomFood] = useState(foods[0])
+  const [foodIndex, setFoodIndex] = useState(0)
   const [sparklePosition, setSparklePosition] = useState({ left: 0, top: 0 })
-  const [showSparkle, setShowSparkle] = useState(false)
-
-  const getRandomFood = useCallback(() => {
-    return foods[Math.floor(Math.random() * foods.length)]
-  }, [])
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // Initialize color on mount
       initializeColor()
       setBgColor(getPageColor())
 
-      // Set initial food
-      setRandomFood(getRandomFood())
-
-      // Function to handle color updates
       const updateColor = () => {
         setBgColor(getPageColor())
       }
 
-      // Listen for storage changes
       const handleStorageChange = (e: StorageEvent) => {
         if (e.key === 'currentColorIndex') {
           updateColor()
         }
       }
 
-      // Listen for custom color change event
       const handleColorChange = () => {
         updateColor()
       }
 
-      // Add event listeners
       window.addEventListener('storage', handleStorageChange)
       window.addEventListener('colorChange', handleColorChange)
 
       return () => {
-        // Cleanup event listeners
         window.removeEventListener('storage', handleStorageChange)
         window.removeEventListener('colorChange', handleColorChange)
       }
     }
-  }, [getRandomFood])
+  }, [])
 
-  const handleMouseMove = (e) => {
-    // Get position relative to the target element
+  const handleSparklePosition = (e) => {
     const rect = e.currentTarget.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-
+    const x = rect.width / 2
+    const y = rect.height / 2
     setSparklePosition({ left: x, top: y })
-    setShowSparkle(true)
-
-    // Hide sparkle after a short delay
-    setTimeout(() => setShowSparkle(false), 500)
   }
 
   const handleClick = () => {
-    setRandomFood(getRandomFood())
-    // Create multiple sparkles on click (would need more complex implementation)
-    setShowSparkle(true)
-    setTimeout(() => setShowSparkle(false), 800)
+    setFoodIndex((prevIndex) => (prevIndex + 1) % foods.length)
+    const audio = new Audio('/sounds/retro_game.mp3')
+    audio.play()
   }
 
   return (
@@ -97,39 +76,57 @@ export default function Home() {
         style={{ backgroundColor: bgColor }}
       >
         <p className="mb-4">
-          You're entering the digital dungeon of a Magical Swordsman. Make yourself comfortable while Grandpa Gnome
+          You've discovered the kingdom of an elusive Magical Swordsman; only the luckiest dream-walkers make it this far.
+          Make yourself comfortable while Grandpa Gnome
           chefs up a yummy bowl of{" "}
           <span className="food-wrapper">
             <span
               className="font-bold cursor-pointer food-item"
               onClick={handleClick}
-              onMouseMove={handleMouseMove}
-              onMouseEnter={() => setShowDescription(true)}
+              onMouseEnter={(e) => {
+                setShowDescription(true)
+                handleSparklePosition(e)
+              }}
               onMouseLeave={() => setShowDescription(false)}
             >
-              {randomFood.emoji} {randomFood.name}
+              {foods[foodIndex].emoji} {foods[foodIndex].name}
 
-              {showSparkle && (
-                <span
-                  className="sparkle"
-                  style={{
-                    left: `${sparklePosition.left}px`,
-                    top: `${sparklePosition.top}px`
-                  }}
-                >
-                  ✨
-                </span>
-              )}
+              <span
+                className="sparkle sparkle-1"
+                style={{
+                  left: `${sparklePosition.left}px`,
+                  top: `${sparklePosition.top}px`
+                }}
+              >
+                ✨
+              </span>
+              <span
+                className="sparkle sparkle-2"
+                style={{
+                  left: `${sparklePosition.left + 20}px`,
+                  top: `${sparklePosition.top - 10}px`
+                }}
+              >
+                ✨
+              </span>
+              <span
+                className="sparkle sparkle-3"
+                style={{
+                  left: `${sparklePosition.left - 20}px`,
+                  top: `${sparklePosition.top + 10}px`
+                }}
+              >
+                ✨
+              </span>
             </span>
 
             <span className={`description ${showDescription ? 'visible' : ''}`}>
-              {randomFood.description}
+              {foods[foodIndex].description}
             </span>
           </span>
         </p>
         <p>
-          Be like the winds, explore every nook & corner of this cyber-space. Each page is a window into my world of
-          technology, art, & writings.
+          Once rested, explore the Enchanted Woodlands. The pixel creatures sense your presence standing tall and proud, eager to catch glimpses of the legendary Internet Traveler's arrival.
         </p>
       </div>
 
@@ -154,12 +151,18 @@ export default function Home() {
           position: relative;
           text-decoration: underline;
           text-underline-offset: 3px;
-          overflow: hidden;
           transition: all 0.3s ease;
+          animation: fadeIn 0.5s ease-in-out;
         }
         
         .food-item:hover {
-          text-shadow: 0 0 10px rgba(255, 255, 150, 0.8);
+          color: #FFD700;
+          text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+        }
+        
+        .food-item:active {
+          transform: scale(0.95);
+          transition: transform 0.1s ease;
         }
         
         .sparkle {
@@ -168,7 +171,16 @@ export default function Home() {
           font-size: 1.2rem;
           transform: translate(-50%, -50%);
           z-index: 5;
-          animation: sparkleAnim 0.6s forwards;
+        }
+        
+        .sparkle-1 {
+          animation: sparkleAnim 1.5s infinite;
+        }
+        .sparkle-2 {
+          animation: sparkleAnim 1.5s infinite 0.3s;
+        }
+        .sparkle-3 {
+          animation: sparkleAnim 1.5s infinite 0.6s;
         }
         
         .description {
@@ -202,6 +214,17 @@ export default function Home() {
           100% {
             opacity: 0;
             transform: translate(-50%, -50%) translate(0, -20px) scale(0.8);
+          }
+        }
+        
+        @keyframes fadeIn {
+          0% {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
           }
         }
       `}</style>
