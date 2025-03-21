@@ -11,28 +11,28 @@ export default function Home() {
 
   const foods = [
 
-    { name: "Dragon Egg Omelet! (Click Me)", emoji: "🥚", description: "Rare, illegal, & totally worth the bounty on your head." },
-    { name: "Goblin Jerky! (Click Me)", emoji: "🥩", description: "Suspiciously chewy. Don’t ask what meat it is." },
-    { name: "Dragon's Honey! (Click Me)", emoji: " 🍯", description: "Harvested fresh & warm everyday" },
-    { name: "Top Ramen! (Click Me)", emoji: " 🍲", description: "Just regular Japanese noodles, honestly" },
-    { name: "Fairy Brain Jelly! (Click Me)", emoji: " 🧠", description: "Wobbly, Wibbly, & full of sweet thoughts" },
-    { name: "Ogre's Earwax Pudding! (Click Me)", emoji: " 🍮", description: "Golden, gooey, & crunchy at right places" },
-    { name: "Sukiyaki! (Click Me)", emoji: " 🥩", description: "Beef so tender - it cried before we cooked it." },
-    { name: "Mermaid's Eyeball Stew! (Click Me)", emoji: " 🥣", description: "Ethically sourced — lovingly stares while you sip." },
-    { name: "Moldy Mushroom Muffins! (Click Me)", emoji: " 🍄", description: "Expired for maximum taste — Penicillin optional" },
-    { name: "Unicorn Horn Soup! (Click Me)", emoji: " 🦄", description: "Aged for 100 years — tastes like rainbows." },
-    { name: "Cereal-Soaked Ketchup! (Click Me)", emoji: " 🥣 ", description: "Breakfast for those who never give up!" },
-    { name: "Chocolaty Brussels Sprouts! (Click Me)", emoji: "  🍬", description: "A betrayal so deep, your taste buds might need therapy" },
-    { name: "Saitama Espresso! (Click Me)", emoji: " ☕", description: "So strong it punches YOU awake." },
-    { name: "Goblin Energy Drink! (Click Me)", emoji: " ⚡", description: "Tastes like battery acid. Feels like unlimited power." },
-    { name: "Minion’s Mystery Stew! (Click Me)", emoji: " 🍲", description: "Made with something. Tastes like something. No further questions." },
-    { name: "Screaming Cheese! (Click Me)", emoji: " 🧀", description: "A delicacy that yells terror when bitten. Delicious, but emotionally exhausting." },
-    { name: "Mermaid Sushi! (Click Me)", emoji: " 🍣", description: "Technically fish. Morally… questionable." },
-    { name: "Tomato Cheesecake! (Click Me)", emoji: " 🍰", description: "Eats itself if left unattended. Self-care at its finest." },
-    { name: "Wasabi Ice Cream! (Click Me)", emoji: " 🍦", description: "Looks innocent until it clears your sinuses and makes you question life choices." },
-    { name: "Durian Candy! (Click Me)", emoji: " 🍬", description: "Smells like used socks - but weirdly addictive." },
-    { name: "Pickle Milkshake! (Click Me)", emoji: " 🥒", description: "Doctors swear by it, everyone else swears at it." },
-    { name: "Kale Donuts! (Click Me)", emoji: " 🍩", description: "Healthy enough to eat six - at least that's what we tell ourselves." },
+    { name: "Dragon Egg Omelet! (ClickMe)", emoji: "🥚", description: "Rare, illegal, & totally worth the bounty on your head." },
+    { name: "Goblin Jerky! (ClickMe)", emoji: "🥩", description: "Suspiciously chewy. Don’t ask what meat it is." },
+    { name: "Dragon's Honey! (ClickMe)", emoji: " 🍯", description: "Harvested fresh & warm everyday" },
+    { name: "Top Ramen! (ClickMe)", emoji: " 🍲", description: "Just regular Japanese noodles, honestly" },
+    { name: "Medusa Brain Jelly On Toast! (ClickMe)", emoji: "🧠", description: "Overthinkers breakfast—one bite & you’ll be stoned with wisdom!" },
+    { name: "Ogre's Earwax Pudding! (ClickMe)", emoji: " 🍮", description: "Golden, gooey, & crunchy at right places" },
+    { name: "Sukiyaki! (ClickMe)", emoji: " 🥩", description: "Beef so tender - it cried before we cooked it." },
+    { name: "Mermaid's Eyeball Stew! (ClickMe)", emoji: " 🥣", description: "Ethically sourced — lovingly stares while you sip." },
+    { name: "Moldy Mushroom Muffins! (ClickMe)", emoji: " 🍄", description: "Expired for maximum taste — Penicillin optional" },
+    { name: "Unicorn Horn Soup! (ClickMe)", emoji: " 🦄", description: "Aged for 100 years — tastes like rainbows." },
+    { name: "Cereal-Soaked Ketchup! (ClickMe)", emoji: " 🥣 ", description: "Breakfast for those who never give up!" },
+    { name: "Chocolaty Brussels Sprouts! (ClickMe)", emoji: "  🍬", description: "A betrayal so deep, your taste buds might need therapy" },
+    { name: "Saitama Espresso! (ClickMe)", emoji: " ☕", description: "So strong it punches YOU awake." },
+    { name: "Goblin Energy Drink! (ClickMe)", emoji: " ⚡", description: "Tastes like battery acid. Feels like unlimited power." },
+    { name: "Minion’s Mystery Stew! (ClickMe)", emoji: " 🍲", description: "Made with something. Tastes like something. No further questions." },
+    { name: "Screaming Cheese! (ClickMe)", emoji: " 🧀", description: "A delicacy that yells terror when bitten. Delicious, but emotionally exhausting." },
+    { name: "Mermaid Sushi! (ClickMe)", emoji: " 🍣", description: "Technically fish. Morally… questionable." },
+    { name: "Tomato Cheesecake! (ClickMe)", emoji: " 🍰", description: "Eats itself if left unattended. Self-care at its finest." },
+    { name: "Wasabi Ice Cream! (ClickMe)", emoji: " 🍦", description: "Looks innocent until it clears your sinuses and makes you question life choices." },
+    { name: "Durian Candy! (ClickMe)", emoji: " 🍬", description: "Smells like used socks - but weirdly addictive." },
+    { name: "Pickle Milkshake! (ClickMe)", emoji: " 🥒", description: "Doctors swear by it, everyone else swears at it." },
+    { name: "Kale Donuts! (ClickMe)", emoji: " 🍩", description: "Healthy enough to eat six - at least that's what we tell ourselves." },
   ]
 
   const [foodIndex, setFoodIndex] = useState(0)
@@ -89,7 +89,7 @@ export default function Home() {
         style={{ backgroundColor: bgColor }}
       >
         <p className="mb-4">
-          You've discovered the kingdom of an elusive Magical Swordsman; only the luckiest dream-walkers make it this far.
+          You've discovered the kingdom of an Magical Swordsman; only the luckiest dream-walkers make it this far.
           Make yourself comfortable while Grandpa Gnome
           chefs up a yummy bowl of{" "}
           <span className="food-wrapper">
