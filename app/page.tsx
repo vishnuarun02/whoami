@@ -10,16 +10,29 @@ export default function Home() {
   const [showDescription, setShowDescription] = useState(false)
 
   const foods = [
-    { name: "Zombie Bone Broth!", emoji: " 🍛", description: "Simmered with freshly dug bones for that rich rotten flavor." },
-    { name: "Dragon's Nostril Honey!", emoji: " 🍯", description: "Harvested fresh & warm everyday" },
-    { name: "Top Ramen!", emoji: " 🍲", description: "Just regular noodles, honestly" },
-    { name: "Fairy God Mother's Brain Jelly on Toast!", emoji: " 🧠", description: "Wobbly, Wibbly, & full of sweet thoughts" },
-    { name: "Ogre's Earwax Pudding!", emoji: " 🍮", description: "Golden, gooey, & crunchy at right places" },
-    { name: "Tapeworm Tempura!", emoji: " 🪱", description: "Fried golden, served still wiggling for freshness" },
-    { name: "Sukiyaki!", emoji: " 🥩", description: "Beef so tender - it cried before we cooked it." },
-    { name: "Mermaid's Eyeball Stew!", emoji: " 🥣", description: "Freshly plucked — stares lovingly while you sip." },
-    { name: "Moldy Mushroom Muffins!", emoji: " 🍄", description: "Expired for maximum taste — Penicillin optional" },
-    { name: "Phoenix Feather Salad!", emoji: " 🥗", description: "Lightly charred — refills itself every 5 minutes." },
+
+    { name: "Dragon Egg Omelet! (Click Me)", emoji: "🥚", description: "Rare, illegal, & totally worth the bounty on your head." },
+    { name: "Goblin Jerky! (Click Me)", emoji: "🥩", description: "Suspiciously chewy. Don’t ask what meat it is." },
+    { name: "Dragon's Honey! (Click Me)", emoji: " 🍯", description: "Harvested fresh & warm everyday" },
+    { name: "Top Ramen! (Click Me)", emoji: " 🍲", description: "Just regular Japanese noodles, honestly" },
+    { name: "Fairy Brain Jelly! (Click Me)", emoji: " 🧠", description: "Wobbly, Wibbly, & full of sweet thoughts" },
+    { name: "Ogre's Earwax Pudding! (Click Me)", emoji: " 🍮", description: "Golden, gooey, & crunchy at right places" },
+    { name: "Sukiyaki! (Click Me)", emoji: " 🥩", description: "Beef so tender - it cried before we cooked it." },
+    { name: "Mermaid's Eyeball Stew! (Click Me)", emoji: " 🥣", description: "Ethically sourced — lovingly stares while you sip." },
+    { name: "Moldy Mushroom Muffins! (Click Me)", emoji: " 🍄", description: "Expired for maximum taste — Penicillin optional" },
+    { name: "Unicorn Horn Soup! (Click Me)", emoji: " 🦄", description: "Aged for 100 years — tastes like rainbows." },
+    { name: "Cereal-Soaked Ketchup! (Click Me)", emoji: " 🥣 ", description: "Breakfast for those who never give up!" },
+    { name: "Chocolaty Brussels Sprouts! (Click Me)", emoji: "  🍬", description: "A betrayal so deep, your taste buds might need therapy" },
+    { name: "Saitama Espresso! (Click Me)", emoji: " ☕", description: "So strong it punches YOU awake." },
+    { name: "Goblin Energy Drink! (Click Me)", emoji: " ⚡", description: "Tastes like battery acid. Feels like unlimited power." },
+    { name: "Minion’s Mystery Stew! (Click Me)", emoji: " 🍲", description: "Made with something. Tastes like something. No further questions." },
+    { name: "Screaming Cheese! (Click Me)", emoji: " 🧀", description: "A delicacy that yells terror when bitten. Delicious, but emotionally exhausting." },
+    { name: "Mermaid Sushi! (Click Me)", emoji: " 🍣", description: "Technically fish. Morally… questionable." },
+    { name: "Tomato Cheesecake! (Click Me)", emoji: " 🍰", description: "Eats itself if left unattended. Self-care at its finest." },
+    { name: "Wasabi Ice Cream! (Click Me)", emoji: " 🍦", description: "Looks innocent until it clears your sinuses and makes you question life choices." },
+    { name: "Durian Candy! (Click Me)", emoji: " 🍬", description: "Smells like used socks - but weirdly addictive." },
+    { name: "Pickle Milkshake! (Click Me)", emoji: " 🥒", description: "Doctors swear by it, everyone else swears at it." },
+    { name: "Kale Donuts! (Click Me)", emoji: " 🍩", description: "Healthy enough to eat six - at least that's what we tell ourselves." },
   ]
 
   const [foodIndex, setFoodIndex] = useState(0)
@@ -126,7 +139,7 @@ export default function Home() {
           </span>
         </p>
         <p>
-          Once rested, explore the Enchanted Woodlands. The pixel creatures sense your presence standing tall and proud, eager to catch glimpses of the legendary Internet Traveler's arrival.
+          Once rested, explore the Enchanted Woodlands. The pixel creatures sense your presence standing tall & proud, eager to catch glimpses of the legendary Internet Traveler's arrival.
         </p>
       </div>
 
