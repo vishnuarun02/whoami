@@ -66,7 +66,7 @@ export default function Home() {
     }
   }, [])
 
-  const handleSparklePosition = (e) => {
+  const handleSparklePosition = (e: any) => {
     const rect = e.currentTarget.getBoundingClientRect()
     const x = rect.width / 2
     const y = rect.height / 2
