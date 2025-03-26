@@ -239,6 +239,23 @@ export default function Home() {
             transform: translateY(0);
           }
         }
+
+          h1 {
+    animation: glowPulse 60s infinite;
+  }
+  
+@keyframes glowPulse {
+  0% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.3);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+  }
+}
+  }
       `}</style>
     </div>
   )
