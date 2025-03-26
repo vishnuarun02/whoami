@@ -80,11 +80,11 @@ export default function Home() {
   }
 
   return (
-    <div className="font-body h-screen flex flex-col justify-center items-center">
-      <h1 className="text-4xl font-heading mb-2">Welcome, Internet Traveler</h1>
+    <div className="font-body min-h-screen flex flex-col justify-start items-center pt-8">
+      <h1 className="text-4xl font-heading mb-4 mt-6">Welcome, Internet Traveler</h1>
 
       <div
-        className={`p-6 rounded-lg mb-4 text-xl ${theme === 'dark' ? 'text-white' : 'text-white'}`}
+        className={`p-6 rounded-lg mb-6 text-xl ${theme === 'dark' ? 'text-white' : 'text-white'}`}
         style={{ backgroundColor: bgColor }}
       >
         <p className="mb-4">
