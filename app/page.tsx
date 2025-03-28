@@ -88,7 +88,7 @@ export default function Home() {
         style={{ backgroundColor: bgColor }}
       >
         <p className="mb-4">
-          You've discovered the kingdom of an Magical Swordsman; only the luckiest dream-walkers make it this far.
+          Welcome to the kingdom of a Magical Swordsman; only the luckiest dream-walkers make it this far.
           Make yourself comfortable while Grandpa Gnome
           chefs up a yummy bowl of{" "}
           <span className="food-wrapper">
