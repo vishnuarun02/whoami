@@ -16,7 +16,7 @@ export default function Home() {
     { name: "Goblin Jerky! (ClickMe)", emoji: "🥩 ", description: "Suspiciously chewy. Don’t ask what meat it is." },
     { name: "Saitama Espresso! (ClickMe)", emoji: "☕ ", description: "So strong it punches YOU awake." },
     { name: "Mermaid Eyeball Stew! (ClickMe)", emoji: "🥣 ", description: "Ethically sourced — lovingly stares while you sip." },
-    { name: "Smoothie ‘With Kale’! (ClickMe)", emoji: "🥬",description: "Green dye #3 never hurt anybody. (Citation needed.)" },
+    { name: "Organic Kale Smoothie! (ClickMe)", emoji: "🥬", description: "Green dye #3 never hurt anybody. (Citation needed.)" },
     { name: "Socks Candy! (ClickMe)", emoji: "🍬 ", description: "Smells like used socks - but weirdly addictive." },
     { name: "Ketchup-Soaked Cereal! (ClickMe)", emoji: "🥣 ", description: "Breakfast for those who never give up!" },
     { name: "Moldy Mushroom Muffins! (ClickMe)", emoji: "🍄 ", description: "Expired for maximum taste — Penicillin optional" },
@@ -29,7 +29,7 @@ export default function Home() {
     { name: "Minion’s Mystery Stew! (ClickMe)", emoji: "🍲 ", description: "Made with something. Tastes like something. No further questions." },
     { name: "Wasabi Ice Cream! (ClickMe)", emoji: "🍦 ", description: "Looks innocent until it clears your sinuses & makes you question life choices." },
     { name: "Kale Donuts! (ClickMe)", emoji: "🍩 ", description: "Healthy enough to eat six - at least that's what we tell ourselves." },
-    
+
   ]
 
   const [foodIndex, setFoodIndex] = useState(0)
