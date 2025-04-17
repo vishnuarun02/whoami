@@ -11,11 +11,11 @@ export default function Home() {
 
   const foods = [
     { name: "Pickle Milkshake! (ClickMe)", emoji: "🥒 ", description: "Doctors swear by it, everyone else swears at it." },
-    { name: "Witch’s Brew Soup", emoji: "🍵🐸", description: "Changes flavor every spoonful. may cause croaking." },
+    { name: "Witch’s Brew Soup", emoji: "🍵🐸", description: "Changes flavor every spoonful. Side effect: Croaking." },
     { name: "Sassy Gingerbread Men", emoji: "🧟🍪", description: "Bite them before they bite you." },
     { name: "Goblin Jerky! (ClickMe)", emoji: "🥩 ", description: "Suspiciously chewy. Don’t ask what meat it is." },
     { name: "Saitama Espresso! (ClickMe)", emoji: "☕ ", description: "So strong it punches YOU awake." },
-    { name: "Mermaid Eyeball Stew! (ClickMe)", emoji: "🥣 ", description: "Ethically sourced — lovingly stares while you sip." },
+    { name: "Mermaid Eyeball Stew! (ClickMe)", emoji: "🥣 ", description: "Ethically sourced — lovingly stares while u sip." },
     { name: "Organic Kale Smoothie! (ClickMe)", emoji: "🥬", description: "Green dye #3 never hurt anybody. (Citation needed.)" },
     { name: "Socks Candy! (ClickMe)", emoji: "🍬 ", description: "Smells like used socks - but weirdly addictive." },
     { name: "Ketchup-Soaked Cereal! (ClickMe)", emoji: "🥣 ", description: "Breakfast for those who never give up!" },
@@ -86,7 +86,7 @@ export default function Home() {
         style={{ backgroundColor: bgColor }}
       >
         <p className="mb-4">
-          Welcome to the kingdom of a Magical Swordsman; only the luckiest dream-walkers make it this far.
+          Welcome to the kingdom of a Magical Swordsman; only the luckiest jay-walkers make it this far.
           Make yourself comfortable while Grandpa Gnome
           chefs up a yummy bowl of{" "}
           <span className="food-wrapper">
