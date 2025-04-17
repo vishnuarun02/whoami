@@ -11,27 +11,25 @@ export default function Home() {
 
   const foods = [
     { name: "Pickle Milkshake! (ClickMe)", emoji: "🥒 ", description: "Doctors swear by it, everyone else swears at it." },
-    { name: "Witch’s Brew Soup", emoji: "🍵🐸", description: "Changes flavor every spoonful. Side effects may include croaking." },
+    { name: "Witch’s Brew Soup", emoji: "🍵🐸", description: "Changes flavor every spoonful. may cause croaking." },
+    { name: "Sassy Gingerbread Men", emoji: "🧟🍪", description: "Bite them before they bite you." }
     { name: "Goblin Jerky! (ClickMe)", emoji: "🥩 ", description: "Suspiciously chewy. Don’t ask what meat it is." },
-    { name: "Screaming Cheese! (ClickMe)", emoji: "🧀 ", description: "A delicacy yells terror when bitten. Delicious, emotionally exhausting." },
-    { name: "Dragon's Mystery Honey! (ClickMe)", emoji: "🍯 ", description: "Harvested fresh & warm everyday" },
     { name: "Saitama Espresso! (ClickMe)", emoji: "☕ ", description: "So strong it punches YOU awake." },
-    { name: "Mermaid's Eyeball Stew! (ClickMe)", emoji: "🥣 ", description: "Ethically sourced — lovingly stares while you sip." },
-    { name: "Moldy Mushroom Muffins! (ClickMe)", emoji: "🍄 ", description: "Expired for maximum taste — Penicillin optional" },
-    { name: "Dragon Egg Omelet! (ClickMe)", emoji: "🥚 ", description: "Rare, illegal, & totally worth the bounty on ur head." },
+    { name: "Mermaid Eyeball Stew! (ClickMe)", emoji: "🥣 ", description: "Ethically sourced — lovingly stares while you sip." },
     { name: "Smoothie ‘With Kale’! (ClickMe)", emoji: "🥬",description: "Green dye #3 never hurt anybody. (Citation needed.)" },
-    { name: "Fish Jelly On Toast! (ClickMe)", emoji: "🧠 ", description: "Overthinkers breakfast—one bite & you’ll be stoned with wisdom!" },
-    { name: "Unicorn Horn Salad! (ClickMe)", emoji: "🦄 ", description: "A salad that tastes like a rainbow. Literally." },
+    { name: "Socks Candy! (ClickMe)", emoji: "🍬 ", description: "Smells like used socks - but weirdly addictive." },
+    { name: "Ketchup-Soaked Cereal! (ClickMe)", emoji: "🥣 ", description: "Breakfast for those who never give up!" },
+    { name: "Moldy Mushroom Muffins! (ClickMe)", emoji: "🍄 ", description: "Expired for maximum taste — Penicillin optional" },
+    { name: "Chocolaty Brussels Sprouts! (ClickMe)", emoji: "🍬 ", description: "A betrayal so deep, might need therapy" },
+    { name: "Dragon Egg Omelet! (ClickMe)", emoji: "🥚 ", description: "Rare, illegal, totally worth bounty on ur head." },
+    { name: "Screaming Cheese! (ClickMe)", emoji: "🧀 ", description: "Delicacy yells terror when bitten. Delicious, emotionally exhausting." },
+    { name: "Unicorn Meat Salad! (ClickMe)", emoji: "🦄 ", description: "A salad that tastes like a rainbow. Literally." },
     { name: "Chocolate-Covered Snails! (ClickMe)", emoji: "🐌 ", description: "A delicacy that’s crunchy, sweet & slimey" },
-    { name: "Mystery Meatloaf! (ClickMe)", emoji: "🍖 ", description: "Made with whatever was in the fridge. Good luck!" },
-    { name: "Chocolaty Brussels Sprouts! (ClickMe)", emoji: "🍬 ", description: "A betrayal so deep, your taste buds might need therapy" },
-    { name: "Goblin Energy Drink! (ClickMe)", emoji: "⚡ ", description: "Tastes like battery acid. Feels like unlimited power." },
+    { name: "Goblin Energy Drink! (ClickMe)", emoji: "⚡ ", description: "Battery acid. Feel the unlimited power." },
     { name: "Minion’s Mystery Stew! (ClickMe)", emoji: "🍲 ", description: "Made with something. Tastes like something. No further questions." },
-    { name: "Mermaid Sushi! (ClickMe)", emoji: "🍣 ", description: "Technically fish. Morally…questionable." },
     { name: "Wasabi Ice Cream! (ClickMe)", emoji: "🍦 ", description: "Looks innocent until it clears your sinuses & makes you question life choices." },
     { name: "Kale Donuts! (ClickMe)", emoji: "🍩 ", description: "Healthy enough to eat six - at least that's what we tell ourselves." },
-    { name: "Ketchup-Soaked Cereal! (ClickMe)", emoji: "🥣 ", description: "Breakfast for those who never give up!" },
-    { name: "Durian Candy! (ClickMe)", emoji: "🍬 ", description: "Smells like used socks - but weirdly addictive." },
+    
   ]
 
   const [foodIndex, setFoodIndex] = useState(0)
