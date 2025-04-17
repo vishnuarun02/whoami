@@ -11,22 +11,21 @@ export default function Home() {
 
   const foods = [
     { name: "Pickle Milkshake! (ClickMe)", emoji: "🥒 ", description: "Doctors swear by it, everyone else swears at it." },
-    { name: "Witch’s Brew Soup", emoji: "🍵🐸", description: "Changes flavor every spoonful. Side effect: Croaking." },
-    { name: "Sassy Gingerbread Men", emoji: "🧟🍪", description: "Bite them before they bite you." },
+    { name: "Witch’s Brew Soup", emoji: "🍵🐸 ", description: "Changes flavor every spoonful. Side effect: U may croak!" },
+    { name: "Sassy Gingerbread Men", emoji: "👨🏼‍💼🍪 ", description: "Bite them before they bite you." },
     { name: "Goblin Jerky! (ClickMe)", emoji: "🥩 ", description: "Suspiciously chewy. Don’t ask what meat it is." },
     { name: "Saitama Espresso! (ClickMe)", emoji: "☕ ", description: "So strong it punches YOU awake." },
     { name: "Mermaid Eyeball Stew! (ClickMe)", emoji: "🥣 ", description: "Ethically sourced — lovingly stares while u sip." },
-    { name: "Organic Kale Smoothie! (ClickMe)", emoji: "🥬", description: "Green dye #3 never hurt anybody. (Citation needed.)" },
-    { name: "Socks Candy! (ClickMe)", emoji: "🍬 ", description: "Smells like used socks - but weirdly addictive." },
+    { name: "Organic Kale Smoothie! (ClickMe)", emoji: "🥬 ", description: "Green dye #3 never hurt anybody. (Citation needed.)" },
+    { name: "Socks Candy! (ClickMe)", emoji: "🧦 ", description: "Smells like used socks - but weirdly addictive." },
     { name: "Ketchup-Soaked Cereal! (ClickMe)", emoji: "🥣 ", description: "Breakfast for those who never give up!" },
     { name: "Moldy Mushroom Muffins! (ClickMe)", emoji: "🍄 ", description: "Expired for maximum taste — Penicillin optional" },
     { name: "Chocolaty Brussels Sprouts! (ClickMe)", emoji: "🍬 ", description: "A betrayal so deep, might need therapy" },
     { name: "Dragon Egg Omelet! (ClickMe)", emoji: "🥚 ", description: "Rare, illegal, totally worth bounty on ur head." },
-    { name: "Screaming Cheese! (ClickMe)", emoji: "🧀 ", description: "Delicacy yells terror when bitten. Delicious, emotionally exhausting." },
+    { name: "Screaming Cheese! (ClickMe)", emoji: "🧀 ", description: "Yells terror when bitten. Yummy & emotionally taxing." },
     { name: "Unicorn Meat Salad! (ClickMe)", emoji: "🦄 ", description: "A salad that tastes like a rainbow. Literally." },
     { name: "Chocolate-Covered Snails! (ClickMe)", emoji: "🐌 ", description: "A delicacy that’s crunchy, sweet & slimey" },
     { name: "Goblin Energy Drink! (ClickMe)", emoji: "⚡ ", description: "Battery acid. Feel the unlimited power." },
-    { name: "Minion’s Mystery Stew! (ClickMe)", emoji: "🍲 ", description: "Made with something. Tastes like something. No further questions." },
     { name: "Wasabi Ice Cream! (ClickMe)", emoji: "🍦 ", description: "Looks innocent until it clears your sinuses & makes you question life choices." },
     { name: "Kale Donuts! (ClickMe)", emoji: "🍩 ", description: "Healthy enough to eat six - at least that's what we tell ourselves." },
 
@@ -73,7 +72,7 @@ export default function Home() {
 
   const handleClick = () => {
     setFoodIndex((prevIndex) => (prevIndex + 1) % foods.length)
-    const audio = new Audio('/sounds/sfx_sounds_powerup15.wav')
+    const audio = new Audio('/sounds/11L-A_small_click_sound_-1744255707468.mp3')
     audio.play()
   }
 
@@ -86,7 +85,7 @@ export default function Home() {
         style={{ backgroundColor: bgColor }}
       >
         <p className="mb-4">
-          Welcome to the kingdom of a Magical Swordsman; only the luckiest jay-walkers make it this far.
+          This is the kingdom of a Magical Swordsman; only the luckiest humans make it this far.
           Make yourself comfortable while Grandpa Gnome
           chefs up a yummy bowl of{" "}
           <span className="food-wrapper">
@@ -239,20 +238,8 @@ export default function Home() {
         }
 
           h1 {
-    animation: glowPulse 60s infinite;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.4);
   }
-  
-@keyframes glowPulse {
-  0% {
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
-  }
-  50% {
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.3);
-  }
-  100% {
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
-  }
-}
   }
       `}</style>
     </div>

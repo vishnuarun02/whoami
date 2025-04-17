@@ -2,10 +2,10 @@
 
 export const colors = [
     "rgb(57, 115, 103)",  // Green
-   // "rgb(139, 99, 92)",   // Brown
-   //  "rgb(120, 81, 169)",  // Soft Purple
-   // "rgb(91, 127, 152)",  // Muted Blue
-   // "rgb(199, 124, 92)",  // Rust Orange
+    // "rgb(139, 99, 92)",   // Brown
+    //  "rgb(120, 81, 169)",  // Soft Purple
+    // "rgb(91, 127, 152)",  // Muted Blue
+    // "rgb(199, 124, 92)",  // Rust Orange
     // "rgb(107, 112, 92)",  // Olive Green
     // "rgb(78, 42, 42)",    // Dark Maroon
 ] as const;
