@@ -74,8 +74,11 @@ export default function BookReviewPage() {
     <div>
       <div className="bg-[var(--accent-color)] text-white p-4">
         <div className="max-w-screen-lg mx-auto flex justify-between items-center">
-          <Link href="/lifelog/bookshelf" className="text-white no-underline flex items-center gap-2 hover:text-white hover:underline focus:text-white focus:underline active:text-white">
-            ← Back to Bookshelf
+          <Link href="/lifelog/bookshelf" className="text-white no-underline flex items-center gap-2 hover:text-white focus:text-white active:text-white">
+            <span className="flex items-center">
+              <span>←</span>
+              <span className="ml-1 hover:underline focus:underline active:underline">Back to Bookshelf</span>
+            </span>
           </Link>
           <span>Vishnu Arun</span>
         </div>
@@ -144,27 +147,33 @@ export default function BookReviewPage() {
         </div>
         
         <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-6" style={{ color: 'var(--accent-color)' }}>Reading Notes</h2>
-          <ul className="pl-6">
+          <h2 className="text-2xl font-heading font-bold mb-6" style={{ color: 'var(--accent-color)' }}>Reading Notes</h2>
+          <div className="max-w-none">
             {book.readingNotes.map((note: string, i: number) => (
-              <li key={i} className="mb-2">{note}</li>
+              <p key={i} className="mb-6">{note}</p>
             ))}
-          </ul>
+          </div>
         </div>
         
         <div className="border-t border-dashed border-[var(--border-color)] mt-12 pt-6 flex justify-between">
           {book.prev ? (
             <div>
-              <Link href={`/lifelog/bookshelf/${book.prev}`} className="text-[var(--accent-color)] no-underline hover:text-[var(--accent-color)] hover:underline focus:text-[var(--accent-color)] focus:underline active:text-[var(--accent-color)]">
-                ← Previous: The Pragmatic Programmer
+              <Link href={`/lifelog/bookshelf/${book.prev}`} className="text-[var(--accent-color)] no-underline hover:text-[var(--accent-color)] focus:text-[var(--accent-color)] active:text-[var(--accent-color)]">
+                <span className="flex items-center">
+                  <span>←</span>
+                  <span className="ml-1 hover:underline focus:underline active:underline">Previous: The Pragmatic Programmer</span>
+                </span>
               </Link>
             </div>
           ) : <div></div>}
           
           {book.next ? (
             <div>
-              <Link href={`/lifelog/bookshelf/${book.next}`} className="text-[var(--accent-color)] no-underline hover:text-[var(--accent-color)] hover:underline focus:text-[var(--accent-color)] focus:underline active:text-[var(--accent-color)]">
-                Next: Thinking, Fast and Slow →
+              <Link href={`/lifelog/bookshelf/${book.next}`} className="text-[var(--accent-color)] no-underline hover:text-[var(--accent-color)] focus:text-[var(--accent-color)] active:text-[var(--accent-color)]">
+                <span className="flex items-center">
+                  <span className="hover:underline focus:underline active:underline">Next: Thinking, Fast and Slow</span>
+                  <span className="ml-1">→</span>
+                </span>
               </Link>
             </div>
           ) : <div></div>}
