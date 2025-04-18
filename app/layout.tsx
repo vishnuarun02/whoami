@@ -2,6 +2,7 @@ import "./globals.css"
 import { Inter } from "next/font/google"
 import LeftMenu from "./components/LeftMenu"
 import { ThemeProvider } from "./components/theme-provider"
+import AccentColorProvider from "./components/AccentColorProvider"
 import type React from "react"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -20,10 +21,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {/* Responsive layout: column on mobile, row on md+ */}
           <div className="flex flex-col md:flex-row min-h-screen">
             <LeftMenu />
-            <main className="flex-1 p-4 md:p-8">{children}</main>
+            <AccentColorProvider>
+              <main className="flex-1 p-4 md:p-8">{children}</main>
+            </AccentColorProvider>
           </div>
         </ThemeProvider>
       </body>

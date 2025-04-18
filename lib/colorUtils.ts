@@ -52,9 +52,9 @@ export const colorPalettes = {
 const COLOR_INDEX_KEY = 'currentColorIndex';
 
 export function getPageColor(): string {
-    // Get the stored index from localStorage, or default to 0
     const storedIndex = localStorage.getItem(COLOR_INDEX_KEY);
-    const currentIndex = storedIndex ? parseInt(storedIndex) : 0;
+    let currentIndex = storedIndex ? parseInt(storedIndex) : 0;
+    if (currentIndex >= colors.length) currentIndex = 0; // fallback
     return colors[currentIndex];
 }
 

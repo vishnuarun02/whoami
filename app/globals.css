@@ -6,6 +6,16 @@
 
 @layer base {
   :root {
+  --bg-color: #f8f6e9;
+  --text-color: #2d2d2d;
+  /* --accent-color: #3b6e64; */
+  /* --accent-light: #5a9d90; */
+  --border-color: #e0dbc8;
+  --journal-bg: #fffdf5;
+  --header-bg: #3b6e64;
+  --highlight-color: #ebc85e;
+  --quote-bg: #f0ede0;
+  --button-hover: #5a9d90;
     --background: 48 100% 97%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -29,6 +39,16 @@
   }
 
   .dark {
+  --bg-color: #1a1a1a;
+  --text-color: #e0e0e0;
+  /* --accent-color: #5a9d90; */
+  /* --accent-light: #6bae9f; */
+  --border-color: #333333;
+  --journal-bg: #242424;
+  --header-bg: #2a3a38;
+  --highlight-color: #ebc85e;
+  --quote-bg: #2a2a2a;
+  --button-hover: #3b6e64;
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
