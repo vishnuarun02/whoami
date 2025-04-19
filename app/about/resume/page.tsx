@@ -3,25 +3,30 @@ export default function Resume() {
     <div className="font-body">
       <h1 className="text-4xl font-heading mb-6">Resume</h1>
 
+      <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-8 rounded">
+        <strong>🚧 Under Construction</strong>
+        <p>This resume page is currently being built. The details below are placeholder text and do not represent real information.</p>
+      </div>
+
       <section className="mb-8">
         <h2 className="text-2xl font-heading mb-4">Education</h2>
         <div className="mb-4">
-          <h3 className="text-xl font-semibold">Master of Science in Computer Science</h3>
-          <p>Stanford University, 2018-2020</p>
+          <h3 className="text-xl font-semibold">Degree Placeholder</h3>
+          <p>University Name, Year-Year</p>
         </div>
         <div>
-          <h3 className="text-xl font-semibold">Bachelor of Engineering in Information Technology</h3>
-          <p>Indian Institute of Technology, Bombay, 2014-2018</p>
+          <h3 className="text-xl font-semibold">Another Degree Placeholder</h3>
+          <p>Another University, Year-Year</p>
         </div>
       </section>
 
       <section className="mb-8">
         <h2 className="text-2xl font-heading mb-4">Work Experience</h2>
         <div className="mb-4">
-          <h3 className="text-xl font-semibold">Senior Software Engineer, TechCorp</h3>
-          <p>2020-Present</p>
+          <h3 className="text-xl font-semibold">Job Title Placeholder, Company Name</h3>
+          <p>Year-Year</p>
           <ul className="list-disc pl-6">
-            <li>Lead developer for cloud-native applications</li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
             <li>Implemented machine learning models for predictive maintenance</li>
           </ul>
         </div>

@@ -29,7 +29,7 @@ const menuItems = [
   },
   {
     title: "LifeLog",
-    subItems: ["bookshelf", "bucketlist", "blogs", "photo album", "recipes", "thoughts"],
+    subItems: ["bookshelf", "blogs", "photo album", "recipes", "thoughts"],
   }
 ];
 
