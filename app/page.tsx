@@ -85,7 +85,7 @@ export default function Home() {
         style={{ backgroundColor: bgColor }}
       >
         <p className="mb-4">
-          Only the luckiest jay-walkers  make it this far.
+          Only the luckiest dreamers make it this far.
           Make yourself comfortable while Grandpa Gnome
           chefs up a yummy bowl of{" "}
           <span className="food-wrapper">
