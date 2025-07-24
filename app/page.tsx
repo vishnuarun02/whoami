@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
 import Image from "next/image"
 import { getPageColor, initializeColor } from "@/lib/colorUtils"
@@ -34,31 +34,29 @@ export default function Home() {
   const [sparklePosition, setSparklePosition] = useState({ left: 0, top: 0 })
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      initializeColor()
+    initializeColor()
+    setBgColor(getPageColor())
+
+    const updateColor = () => {
       setBgColor(getPageColor())
+    }
 
-      const updateColor = () => {
-        setBgColor(getPageColor())
-      }
-
-      const handleStorageChange = (e: StorageEvent) => {
-        if (e.key === 'currentColorIndex') {
-          updateColor()
-        }
-      }
-
-      const handleColorChange = () => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'currentColorIndex') {
         updateColor()
       }
+    }
 
-      window.addEventListener('storage', handleStorageChange)
-      window.addEventListener('colorChange', handleColorChange)
+    const handleColorChange = () => {
+      updateColor()
+    }
 
-      return () => {
-        window.removeEventListener('storage', handleStorageChange)
-        window.removeEventListener('colorChange', handleColorChange)
-      }
+    window.addEventListener('storage', handleStorageChange)
+    window.addEventListener('colorChange', handleColorChange)
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+      window.removeEventListener('colorChange', handleColorChange)
     }
   }, [])
 
@@ -69,7 +67,7 @@ export default function Home() {
     setSparklePosition({ left: x, top: y })
   }
 
-  const handleClick = () => {
+  const handleFoodClick = (e: React.MouseEvent<HTMLDivElement>) => {
     setFoodIndex((prevIndex) => (prevIndex + 1) % foods.length)
     const audio = new Audio('/sounds/11L-A_small_click_sound_-1744255707468.mp3')
     audio.play()
@@ -90,7 +88,7 @@ export default function Home() {
           <span className="food-wrapper">
             <span
               className="font-bold cursor-pointer food-item"
-              onClick={handleClick}
+              onClick={handleFoodClick}
               onMouseEnter={(e) => {
                 setShowDescription(true)
                 handleSparklePosition(e)

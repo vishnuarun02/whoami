@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
@@ -60,12 +60,12 @@ export default function BookReviewPage() {
   const params = useParams();
   const id = params.id as string;
   const [book, setBook] = useState<BookType | null>(null);
-  
+
   useEffect(() => {
     // In the future, this will be a database query
     setBook(books[id] || null);
   }, [id]);
-  
+
   if (!book) {
     return <div className="p-8 text-center">Book not found</div>;
   }
@@ -83,24 +83,24 @@ export default function BookReviewPage() {
           <span>Vishnu Arun</span>
         </div>
       </div>
-      
+
       <div className="max-w-screen-lg mx-auto p-4 sm:p-8">
         <div className="mb-6 text-sm text-gray-600 dark:text-gray-400">
-          <Link href="/" className="text-[var(--accent-color)] no-underline hover:text-[var(--accent-color)] hover:underline focus:text-[var(--accent-color)] focus:underline active:text-[var(--accent-color)]">Home</Link> &gt; 
+          <Link href="/" className="text-[var(--accent-color)] no-underline hover:text-[var(--accent-color)] hover:underline focus:text-[var(--accent-color)] focus:underline active:text-[var(--accent-color)]">Home</Link> &gt;
           <Link href="/lifelog/bookshelf" className="text-[var(--accent-color)] no-underline hover:text-[var(--accent-color)] hover:underline focus:text-[var(--accent-color)] focus:underline active:text-[var(--accent-color)]">Bookshelf</Link> &gt; {book.title}
         </div>
-        
+
         <div className="flex gap-8 mb-8 flex-col md:flex-row">
           <div className="w-full md:w-[200px] shadow-lg">
-            <Image 
-              src={book.coverImage || '/api/placeholder/200/300'} 
+            <Image
+              src={book.coverImage || '/api/placeholder/200/300'}
               alt={`${book.title} book cover`}
               width={200}
               height={300}
               className="w-full"
             />
           </div>
-          
+
           <div>
             <h1 className="text-4xl font-bold mb-2" style={{ color: 'var(--accent-color)' }}>{book.title}</h1>
             <div className="mb-6">
@@ -119,11 +119,11 @@ export default function BookReviewPage() {
             </div>
           </div>
         </div>
-        
+
         <div className="mb-8">
           <h2 className="text-2xl font-bold mb-6" style={{ color: 'var(--accent-color)' }}>Key Takeaways</h2>
           <p>{book.keyTakeaways}</p>
-          
+
           {book.quotes.length > 0 && (
             <div className="bg-[var(--quote-bg)] border-l-4 border-[var(--accent-color)] p-4 my-6 italic">
               {book.quotes[0].text}
@@ -131,13 +131,13 @@ export default function BookReviewPage() {
             </div>
           )}
         </div>
-        
+
         <div className="mb-8">
           <h2 className="text-2xl font-bold mb-6" style={{ color: 'var(--accent-color)' }}>Full Review</h2>
           {book.fullReview.split('\n\n').map((paragraph: string, i: number) => (
             <p key={i} className="mb-6">{paragraph}</p>
           ))}
-          
+
           {book.quotes.length > 1 && (
             <div className="bg-[var(--quote-bg)] border-l-4 border-[var(--accent-color)] p-4 my-6 italic">
               {book.quotes[1].text}
@@ -145,7 +145,7 @@ export default function BookReviewPage() {
             </div>
           )}
         </div>
-        
+
         <div className="mb-8">
           <h2 className="text-2xl font-heading font-bold mb-6" style={{ color: 'var(--accent-color)' }}>Reading Notes</h2>
           <div className="max-w-none">
@@ -154,7 +154,7 @@ export default function BookReviewPage() {
             ))}
           </div>
         </div>
-        
+
         <div className="border-t border-dashed border-[var(--border-color)] mt-12 pt-6 flex justify-between">
           {book.prev ? (
             <div>
@@ -166,7 +166,7 @@ export default function BookReviewPage() {
               </Link>
             </div>
           ) : <div></div>}
-          
+
           {book.next ? (
             <div>
               <Link href={`/lifelog/bookshelf/${book.next}`} className="text-[var(--accent-color)] no-underline hover:text-[var(--accent-color)] focus:text-[var(--accent-color)] active:text-[var(--accent-color)]">

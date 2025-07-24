@@ -1,3 +1,6 @@
+import Image from 'next/image';
+import PhotoCard from '../../components/PhotoCard';
+
 export default function PhotoAlbum() {
   return (
     <div className="font-body">
@@ -5,46 +8,50 @@ export default function PhotoAlbum() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         <PhotoCard
-          src="/placeholder.svg?height=300&width=300"
+          src="/placeholder.svg"
           alt="Hiking in the mountains"
           caption="Exploring the Himalayas"
+          width={300}
+          height={300}
         />
         <PhotoCard
-          src="/placeholder.svg?height=300&width=300"
+          src="/placeholder.svg"
           alt="Coding setup"
           caption="My workspace during a hackathon"
+          width={300}
+          height={300}
         />
         <PhotoCard
-          src="/placeholder.svg?height=300&width=300"
+          src="/placeholder.svg"
           alt="Conference presentation"
           caption="Speaking at TechCon 2023"
+          width={300}
+          height={300}
         />
         <PhotoCard
-          src="/placeholder.svg?height=300&width=300"
+          src="/placeholder.svg"
           alt="Sunset at the beach"
           caption="Relaxing after a long day of coding"
+          width={300}
+          height={300}
         />
         <PhotoCard
-          src="/placeholder.svg?height=300&width=300"
+          src="/placeholder.svg"
           alt="Robot prototype"
           caption="Working on my latest robotics project"
+          width={300}
+          height={300}
         />
         <PhotoCard
-          src="/placeholder.svg?height=300&width=300"
+          src="/placeholder.svg"
           alt="Team photo"
           caption="With my amazing development team"
+          width={300}
+          height={300}
         />
       </div>
     </div>
   )
 }
 
-function PhotoCard({ src, alt, caption }: { src: string; alt: string; caption: string }) {
-  return (
-    <div className="border border-text/10 rounded-lg overflow-hidden">
-      <img src={src || "/placeholder.svg"} alt={alt} className="w-full h-48 object-cover" />
-      <p className="p-4 text-sm">{caption}</p>
-    </div>
-  )
-}
 

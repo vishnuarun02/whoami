@@ -1,33 +1,84 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useReducer } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
+// Define the state shape
+interface BookFormState {
+  activeTab: string;
+  rating: number;
+  tags: string[];
+  coverPreview: string | null;
+  showPreview: boolean;
+  quoteText: string;
+  quoteSource: string;
+  title: string;
+  author: string;
+  readDates: string;
+  keyTakeaways: string;
+  fullReview: string;
+  readingNotes: string;
+}
+
+// Define action types
+type BookFormAction =
+  | { type: 'SET_FIELD'; field: keyof Omit<BookFormState, 'tags'>; payload: string | number | boolean | null }
+  | { type: 'ADD_TAG'; payload: string }
+  | { type: 'REMOVE_TAG'; payload: string };
+
+// Initial state
+const initialState: BookFormState = {
+  activeTab: 'book',
+  rating: 0,
+  tags: [],
+  coverPreview: null,
+  showPreview: false,
+  quoteText: '',
+  quoteSource: '',
+  title: '',
+  author: '',
+  readDates: '',
+  keyTakeaways: '',
+  fullReview: '',
+  readingNotes: '',
+};
+
+// Reducer function
+function bookFormReducer(state: BookFormState, action: BookFormAction): BookFormState {
+  switch (action.type) {
+    case 'SET_FIELD':
+      return { ...state, [action.field]: action.payload };
+    case 'ADD_TAG':
+      return state.tags.includes(action.payload) ? state : { ...state, tags: [...state.tags, action.payload] };
+    case 'REMOVE_TAG':
+      return { ...state, tags: state.tags.filter(tag => tag !== action.payload) };
+    default:
+      return state;
+  }
+}
+
 export default function BookEditorPage() {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState('book');
-  const [rating, setRating] = useState(0);
-  const [tags, setTags] = useState<string[]>([]);
-  const [coverPreview, setCoverPreview] = useState<string | null>(null);
-  const [showPreview, setShowPreview] = useState(false);
-  const [quoteText, setQuoteText] = useState('');
-  const [quoteSource, setQuoteSource] = useState('');
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [readDates, setReadDates] = useState('');
-  const [keyTakeaways, setKeyTakeaways] = useState('');
-  const [fullReview, setFullReview] = useState('');
-  const [readingNotes, setReadingNotes] = useState('');
+  const [state, dispatch] = useReducer(bookFormReducer, initialState);
+  const { 
+    activeTab, rating, tags, coverPreview, showPreview, 
+    quoteText, quoteSource, title, author, readDates, 
+    keyTakeaways, fullReview, readingNotes 
+  } = state;
+
+  const handleFieldChange = (field: keyof Omit<BookFormState, 'tags'>, value: string | number | boolean | null) => {
+    dispatch({ type: 'SET_FIELD', field, payload: value });
+  };
 
   const handleCoverUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       const reader = new FileReader();
-      reader.onload = (e) => {
-        if (e.target?.result) {
-          setCoverPreview(e.target.result.toString());
+      reader.onload = (event) => {
+        if (event.target?.result) {
+          handleFieldChange('coverPreview', event.target.result.toString());
         }
       };
       reader.readAsDataURL(file);
@@ -37,25 +88,17 @@ export default function BookEditorPage() {
   const handleTagInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if ((e.key === 'Enter' || e.key === ',') && e.currentTarget.value.trim()) {
       e.preventDefault();
-      const newTag = e.currentTarget.value.trim();
-      if (!tags.includes(newTag)) {
-        setTags([...tags, newTag]);
-        e.currentTarget.value = '';
-      }
+      dispatch({ type: 'ADD_TAG', payload: e.currentTarget.value.trim() });
+      e.currentTarget.value = '';
     }
   };
 
   const removeTag = (tagToRemove: string) => {
-    setTags(tags.filter(tag => tag !== tagToRemove));
-  };
-
-  const handleRatingClick = (value: number) => {
-    setRating(value);
+    dispatch({ type: 'REMOVE_TAG', payload: tagToRemove });
   };
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
-    // In the future, this will save to the database
     console.log({
       title,
       author,
@@ -83,10 +126,10 @@ export default function BookEditorPage() {
       </div>
       <div className="max-w-2xl mx-auto py-8 px-4 sm:px-6">
         <div className="mb-8">
-          <select 
+          <select
             className="w-full p-3 bg-white border border-[var(--border-color)] rounded-md font-mono mb-6"
             value={activeTab}
-            onChange={(e) => setActiveTab(e.target.value)}
+            onChange={(e) => handleFieldChange('activeTab', e.target.value)}
           >
             <option value="book">Book Review</option>
             <option value="blog">Blog Post</option>
@@ -104,7 +147,7 @@ export default function BookEditorPage() {
                     className="w-full p-3 border border-[var(--border-color)] rounded-md bg-white font-mono"
                     placeholder="Enter book title"
                     value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    onChange={(e) => handleFieldChange('title', e.target.value)}
                   />
                 </div>
                 <div className="mb-4">
@@ -114,7 +157,7 @@ export default function BookEditorPage() {
                     className="w-full p-3 border border-[var(--border-color)] rounded-md bg-white font-mono"
                     placeholder="Enter author name"
                     value={author}
-                    onChange={(e) => setAuthor(e.target.value)}
+                    onChange={(e) => handleFieldChange('author', e.target.value)}
                   />
                 </div>
                 <div className="mb-4">
@@ -124,7 +167,7 @@ export default function BookEditorPage() {
                     className="w-full p-3 border border-[var(--border-color)] rounded-md bg-white font-mono"
                     placeholder="E.g., Jan 5-28, 2025"
                     value={readDates}
-                    onChange={(e) => setReadDates(e.target.value)}
+                    onChange={(e) => handleFieldChange('readDates', e.target.value)}
                   />
                 </div>
                 <div className="mb-4">
@@ -134,7 +177,7 @@ export default function BookEditorPage() {
                       <span
                         key={value}
                         className={`cursor-pointer ${value <= rating ? 'text-[var(--highlight-color)]' : ''}`}
-                        onClick={() => handleRatingClick(value)}
+                        onClick={() => handleFieldChange('rating', value)}
                       >
                         ★
                       </span>
@@ -214,7 +257,7 @@ export default function BookEditorPage() {
                     className="w-full min-h-[200px] p-4 border border-[var(--border-color)] rounded-md font-mono resize-vertical"
                     placeholder="Write your key points and summary here..."
                     value={keyTakeaways}
-                    onChange={(e) => setKeyTakeaways(e.target.value)}
+                    onChange={(e) => handleFieldChange('keyTakeaways', e.target.value)}
                   ></textarea>
                 </div>
                 <div className="mb-6">
@@ -223,14 +266,14 @@ export default function BookEditorPage() {
                     className="w-full min-h-[80px] p-4 border border-[var(--border-color)] rounded-md font-mono mb-2"
                     placeholder="Enter a memorable quote from the book..."
                     value={quoteText}
-                    onChange={(e) => setQuoteText(e.target.value)}
+                    onChange={(e) => handleFieldChange('quoteText', e.target.value)}
                   ></textarea>
                   <input
                     type="text"
                     className="w-full p-3 border border-[var(--border-color)] rounded-md font-mono mb-4"
                     placeholder="Source of the quote (e.g., character, chapter)"
                     value={quoteSource}
-                    onChange={(e) => setQuoteSource(e.target.value)}
+                    onChange={(e) => handleFieldChange('quoteSource', e.target.value)}
                   />
                   <div className="bg-[var(--quote-bg)] border-l-4 border-[var(--highlight-color)] p-4 my-4 italic">
                     <p>{quoteText || 'Your quote will appear here...'}</p>
@@ -243,7 +286,7 @@ export default function BookEditorPage() {
                     className="w-full min-h-[200px] p-4 border border-[var(--border-color)] rounded-md font-mono resize-vertical"
                     placeholder="Write your detailed review here..."
                     value={fullReview}
-                    onChange={(e) => setFullReview(e.target.value)}
+                    onChange={(e) => handleFieldChange('fullReview', e.target.value)}
                   ></textarea>
                 </div>
                 <div className="bg-[var(--journal-bg)] p-6 rounded-lg shadow-md mb-6">
@@ -252,14 +295,14 @@ export default function BookEditorPage() {
                     className="w-full min-h-[200px] p-4 border border-[var(--border-color)] rounded-md font-mono resize-vertical"
                     placeholder="Add your reading notes, observations, and highlights..."
                     value={readingNotes}
-                    onChange={(e) => setReadingNotes(e.target.value)}
+                    onChange={(e) => handleFieldChange('readingNotes', e.target.value)}
                   ></textarea>
                 </div>
                 <div className="flex justify-between mt-8">
                   <button
                     type="button"
                     className="px-6 py-3 border border-[var(--accent-color)] text-[var(--accent-color)] rounded font-mono hover:bg-[var(--accent-color)] hover:text-white transition-colors"
-                    onClick={() => setShowPreview(!showPreview)}
+                    onClick={() => handleFieldChange('showPreview', !showPreview)}
                   >
                     {showPreview ? 'Hide Preview' : 'Preview'}
                   </button>

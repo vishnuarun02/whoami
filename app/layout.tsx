@@ -1,9 +1,8 @@
-import "./globals.css"
+import "@/app/globals.css"
 import { Inter } from "next/font/google"
-import LeftMenu from "./components/LeftMenu"
-import { ThemeProvider } from "./components/theme-provider"
-import AccentColorProvider from "./components/AccentColorProvider"
-import type React from "react"
+import LeftMenu from "@/app/components/LeftMenu"
+import { ThemeProvider } from "@/app/components/theme-provider"
+import AccentColorProvider from "@/app/components/AccentColorProvider"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -32,4 +31,3 @@ export default function RootLayout({
     </html>
   )
 }
-

@@ -1,6 +1,5 @@
-import React from 'react';
 import Link from 'next/link';
-import BookCard from '@/app/components/BookCard';
+import BookCard from '@/components/BookCard';
 
 // Mock data - will be replaced with database calls later
 const books = [
