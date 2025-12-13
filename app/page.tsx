@@ -1,18 +1,14 @@
 'use client'
 import { useState, useEffect, useCallback } from "react"
-import { useTheme } from "next-themes"
 import Image from "next/image"
 import { getPageColor, initializeColor } from "@/lib/colorUtils"
 import { ASSETS, EVENTS, STORAGE_KEYS } from "@/lib/constants"
 import { foods } from "@/data/foods"
 
 export default function Home() {
-  const { theme } = useTheme()
   const [bgColor, setBgColor] = useState<string>("")
   const [showDescription, setShowDescription] = useState(false)
   const [foodIndex, setFoodIndex] = useState(0)
-  const [sparklePosition, setSparklePosition] = useState({ left: 0, top: 0 })
-
   const updateColor = useCallback(() => {
     setBgColor(getPageColor())
   }, [])
@@ -35,11 +31,6 @@ export default function Home() {
       window.removeEventListener(EVENTS.colorChange, updateColor)
     }
   }, [updateColor])
-
-  const handleSparklePosition = (e: React.MouseEvent<HTMLSpanElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    setSparklePosition({ left: rect.width / 2, top: rect.height / 2 })
-  }
 
   const handleFoodClick = () => {
     setFoodIndex((prevIndex) => (prevIndex + 1) % foods.length)
@@ -67,16 +58,10 @@ export default function Home() {
             <span
               className="font-bold cursor-pointer food-item"
               onClick={handleFoodClick}
-              onMouseEnter={(e) => {
-                setShowDescription(true)
-                handleSparklePosition(e)
-              }}
+              onMouseEnter={() => setShowDescription(true)}
               onMouseLeave={() => setShowDescription(false)}
             >
-              {currentFood.emoji} {currentFood.name}
-              <Sparkle offset={0} position={sparklePosition} />
-              <Sparkle offset={1} position={sparklePosition} />
-              <Sparkle offset={2} position={sparklePosition} />
+              {currentFood.emoji} {currentFood.name}<span className="sparkles"><span className="sparkle sparkle-1">✨</span><span className="sparkle sparkle-2">✨</span><span className="sparkle sparkle-3">✨</span></span>
             </span>
 
             <span className={`description ${showDescription ? 'visible' : ''}`}>
@@ -126,17 +111,41 @@ export default function Home() {
           transition: transform 0.1s ease;
         }
         
+        .sparkles {
+          display: inline-block;
+          position: relative;
+          width: 0;
+          height: 0;
+        }
+        
         .sparkle {
           position: absolute;
           pointer-events: none;
-          font-size: 1.2rem;
-          transform: translate(-50%, -50%);
+          font-size: 1rem;
           z-index: 5;
+          opacity: 0;
+          white-space: nowrap;
         }
         
-        .sparkle-1 { animation: sparkleAnim 1.5s infinite; }
-        .sparkle-2 { animation: sparkleAnim 1.5s infinite 0.3s; }
-        .sparkle-3 { animation: sparkleAnim 1.5s infinite 0.6s; }
+        .food-item:hover .sparkle {
+          opacity: 1;
+        }
+        
+        .sparkle-1 { 
+          left: 5px;
+          top: -15px;
+          animation: sparkleAnim 1.5s infinite; 
+        }
+        .sparkle-2 { 
+          left: 15px;
+          top: -5px;
+          animation: sparkleAnim 1.5s infinite 0.3s; 
+        }
+        .sparkle-3 { 
+          left: 25px;
+          top: -12px;
+          animation: sparkleAnim 1.5s infinite 0.6s; 
+        }
         
         .description {
           font-size: 0.85rem;
@@ -191,24 +200,3 @@ export default function Home() {
   )
 }
 
-// Sparkle component for cleaner JSX
-function Sparkle({ offset, position }: { offset: number; position: { left: number; top: number } }) {
-  const offsets = [
-    { left: 0, top: 0 },
-    { left: 20, top: -10 },
-    { left: -20, top: 10 },
-  ]
-  const { left, top } = offsets[offset]
-
-  return (
-    <span
-      className={`sparkle sparkle-${offset + 1}`}
-      style={{
-        left: `${position.left + left}px`,
-        top: `${position.top + top}px`
-      }}
-    >
-      ✨
-    </span>
-  )
-}
