@@ -6,30 +6,61 @@
 
 @layer base {
   :root {
-  --bg-color: #f8f6e9;
-  --text-color: #2d2d2d;
-  /* --accent-color: #3b6e64; */
-  /* --accent-light: #5a9d90; */
-  --border-color: #e0dbc8;
-  --journal-bg: #fffdf5;
-  --header-bg: #3b6e64;
-  --highlight-color: #ebc85e;
-  --quote-bg: #f0ede0;
-  --button-hover: #5a9d90;
+    /* Dynamic accent color - set by JavaScript, defaults to green */
+    --accent-color: rgb(57, 115, 103);
+    --menu-color: rgb(57, 115, 103);
+
+    /* Legacy color variables */
+    --bg-color: #f8f6e9;
+    --text-color: #2d2d2d;
+    --accent-light: #5a9d90;
+    --border-color: hsl(var(--border));
+    --journal-bg: hsl(var(--card));
+    --header-bg: #3b6e64;
+    --highlight-color: #ebc85e;
+    --quote-bg: hsl(var(--muted));
+    --button-hover: #5a9d90;
+    --chip-1-bg: #52a7bc;
+    --chip-1-text: #0b2e36;
+    --chip-1-border: #386f80;
+    --chip-2-bg: #87b6ba;
+    --chip-2-text: #12343b;
+    --chip-2-border: #6c9ea3;
+    --chip-3-bg: #e29d6c;
+    --chip-3-text: #3b2717;
+    --chip-3-border: #c7814d;
+    --chip-4-bg: #e4b250;
+    --chip-4-text: #2f230a;
+    --chip-4-border: #c69334;
+    --chip-5-bg: #bda15e;
+    --chip-5-text: #2d2410;
+    --chip-5-border: #9d8441;
+    --chip-6-bg: #f7c530;
+    --chip-6-text: #3c2a08;
+    --chip-6-border: #d2a71c;
+    --chip-7-bg: #d5c76a;
+    --chip-7-text: #2f270e;
+    --chip-7-border: #baa94f;
+    --chip-8-bg: #937558;
+    --chip-8-text: #f9f1e6;
+    --chip-8-border: #755944;
+    --chip-9-bg: #e9d6b1;
+    --chip-9-text: #2f2515;
+    --chip-9-border: #d3c095;
     --background: 48 100% 97%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 199 77% 73%;
+    --primary: 162 34% 34%;
     --primary-foreground: 210 40% 98%;
     --secondary: 152 89% 78%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 271 100% 64%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 162 34% 34%;
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
@@ -39,29 +70,60 @@
   }
 
   .dark {
-  --bg-color: #1a1a1a;
-  --text-color: #e0e0e0;
-  /* --accent-color: #5a9d90; */
-  /* --accent-light: #6bae9f; */
-  --border-color: #333333;
-  --journal-bg: #242424;
-  --header-bg: #2a3a38;
-  --highlight-color: #ebc85e;
-  --quote-bg: #2a2a2a;
-  --button-hover: #3b6e64;
+    /* Dynamic accent color - set by JavaScript, defaults to green */
+    --accent-color: rgb(57, 115, 103);
+    --menu-color: rgb(57, 115, 103);
+
+    /* Legacy color variables */
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --accent-light: #6bae9f;
+    --border-color: #333333;
+    --journal-bg: #242424;
+    --header-bg: #2a3a38;
+    --highlight-color: #ebc85e;
+    --quote-bg: #2a2a2a;
+    --button-hover: #3b6e64;
+    --chip-1-bg: #6fbace;
+    --chip-1-text: #07161a;
+    --chip-1-border: #519eb2;
+    --chip-2-bg: #9fc7cb;
+    --chip-2-text: #08191d;
+    --chip-2-border: #80adb1;
+    --chip-3-bg: #f0b78d;
+    --chip-3-text: #351d0e;
+    --chip-3-border: #d89a6f;
+    --chip-4-bg: #f1c76f;
+    --chip-4-text: #2a210e;
+    --chip-4-border: #d6a845;
+    --chip-5-bg: #d1b97f;
+    --chip-5-text: #261f0f;
+    --chip-5-border: #b79a60;
+    --chip-6-bg: #ffde5c;
+    --chip-6-text: #2d2008;
+    --chip-6-border: #e2be3d;
+    --chip-7-bg: #e4d68b;
+    --chip-7-text: #26210f;
+    --chip-7-border: #c8ba68;
+    --chip-8-bg: #af8f6f;
+    --chip-8-text: #fff5e8;
+    --chip-8-border: #927455;
+    --chip-9-bg: #f5e9d0;
+    --chip-9-text: #20170a;
+    --chip-9-border: #ddcba6;
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 199 77% 63%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 162 34% 40%;
+    --primary-foreground: 210 40% 98%;
     --secondary: 152 89% 68%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 271 100% 74%;
+    --accent: 162 34% 40%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
@@ -70,21 +132,9 @@
     --ring: 212.7 26.8% 83.9%;
   }
 
-  /* Typography base styles */
-  h1 {
-    @apply text-title font-heading mb-8;
-  }
-
-  h2 {
-    @apply text-heading font-heading mb-6;
-  }
-
+  /* Typography utility classes - use these instead of global element styles */
   .welcome-text {
     @apply text-body-lg font-body;
-  }
-
-  p {
-    @apply text-body font-body;
   }
 
   .tag {
@@ -92,10 +142,6 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-  }
-
-  a {
-    @apply text-foreground/70 hover:text-primary transition-colors;
+    @apply bg-background text-foreground font-body;
   }
 }

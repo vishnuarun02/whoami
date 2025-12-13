@@ -55,20 +55,53 @@ module.exports = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        text: "#333333",
-        link: "#666666",
-        purple: "#9747FF",
-        theme: {
-          green: {
-            DEFAULT: "rgb(57, 115, 103)",
-            dark: "rgb(42, 90, 80)",
-            light: "rgb(78, 140, 126)",
+        // Chip colors for badges
+        chip: {
+          1: {
+            bg: "var(--chip-1-bg)",
+            text: "var(--chip-1-text)",
+            border: "var(--chip-1-border)",
           },
-          brown: {
-            DEFAULT: "rgb(139, 99, 92)",
-            dark: "rgb(112, 77, 71)",
-            light: "rgb(166, 127, 119)",
-          }
+          2: {
+            bg: "var(--chip-2-bg)",
+            text: "var(--chip-2-text)",
+            border: "var(--chip-2-border)",
+          },
+          3: {
+            bg: "var(--chip-3-bg)",
+            text: "var(--chip-3-text)",
+            border: "var(--chip-3-border)",
+          },
+          4: {
+            bg: "var(--chip-4-bg)",
+            text: "var(--chip-4-text)",
+            border: "var(--chip-4-border)",
+          },
+          5: {
+            bg: "var(--chip-5-bg)",
+            text: "var(--chip-5-text)",
+            border: "var(--chip-5-border)",
+          },
+          6: {
+            bg: "var(--chip-6-bg)",
+            text: "var(--chip-6-text)",
+            border: "var(--chip-6-border)",
+          },
+          7: {
+            bg: "var(--chip-7-bg)",
+            text: "var(--chip-7-text)",
+            border: "var(--chip-7-border)",
+          },
+          8: {
+            bg: "var(--chip-8-bg)",
+            text: "var(--chip-8-text)",
+            border: "var(--chip-8-border)",
+          },
+          9: {
+            bg: "var(--chip-9-bg)",
+            text: "var(--chip-9-text)",
+            border: "var(--chip-9-border)",
+          },
         }
       },
       fontFamily: {

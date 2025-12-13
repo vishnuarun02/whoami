@@ -1,4 +1,6 @@
-export const recipes = [
+import type { Recipe } from "@/lib/types";
+
+export const recipes: Recipe[] = [
   {
     title: "Brain Boost Smoothie",
     ingredients: [
@@ -21,7 +23,8 @@ export const recipes = [
       "2 tbsp curry powder",
       "1 cup vegetable broth",
     ],
-    instructions: "Sauté onion and garlic. Add remaining ingredients and simmer for 20 minutes. Serve over rice.",
+    instructions:
+      "Sauté onion and garlic. Add remaining ingredients and simmer for 20 minutes. Serve over rice.",
   },
   {
     title: "Debugger's Delight Cookies",
@@ -33,6 +36,7 @@ export const recipes = [
       "1 tsp vanilla extract",
       "1 cup chocolate chips",
     ],
-    instructions: "Mix ingredients, drop spoonfuls onto a baking sheet, and bake at 350°F for 10-12 minutes.",
+    instructions:
+      "Mix ingredients, drop spoonfuls onto a baking sheet, and bake at 350°F for 10-12 minutes.",
   },
 ];

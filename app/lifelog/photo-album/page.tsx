@@ -1,11 +1,11 @@
-import Image from 'next/image';
-import PhotoCard from '../../components/PhotoCard';
+import PhotoCard from '@/components/cards/PhotoCard';
+import { PageShell } from "@/components/layout/PageShell"
+import { SectionHeader } from "@/components/domain/SectionHeader"
 
 export default function PhotoAlbum() {
   return (
-    <div className="font-body">
-      <h1 className="text-4xl font-heading mb-6">Photo Album</h1>
-
+    <PageShell>
+      <SectionHeader title="Photo Album" />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         <PhotoCard
           src="/placeholder.svg"
@@ -50,7 +50,7 @@ export default function PhotoAlbum() {
           height={300}
         />
       </div>
-    </div>
+    </PageShell>
   )
 }
 

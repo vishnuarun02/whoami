@@ -1,84 +1,62 @@
 'use client'
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { useTheme } from "next-themes"
 import Image from "next/image"
 import { getPageColor, initializeColor } from "@/lib/colorUtils"
+import { ASSETS, EVENTS, STORAGE_KEYS } from "@/lib/constants"
+import { foods } from "@/data/foods"
 
 export default function Home() {
   const { theme } = useTheme()
   const [bgColor, setBgColor] = useState<string>("")
   const [showDescription, setShowDescription] = useState(false)
-
-  const foods = [
-    { name: "Moldy Mushroom Muffins! (ClickMe)", emoji: "🍄 ", description: "Expired for maximum taste — Penicillin optional" },
-    { name: "Mermaid Eyeball Stew! (ClickMe)", emoji: "🥣 ", description: "Ethically sourced — lovingly stares while u sip." },
-    { name: "Pickle Milkshake! (ClickMe)", emoji: "🥒 ", description: "Doctors swear by it, everyone else swears at it." },
-    { name: "Chocolate-Covered Snails! (ClickMe)", emoji: "🐌 ", description: "A delicacy that’s crunchy, sweet & slimey" },
-    { name: "Goblin Jerky! (ClickMe)", emoji: "🥩 ", description: "Suspiciously chewy. Don’t ask what meat it is." },
-    { name: "Witch’s Brew Soup", emoji: "🍵🐸 ", description: "Changes flavor every spoonful. Side effect: U may croak!" },
-    { name: "Gingerbread Man", emoji: "👨🏼‍💼🍪 ", description: "Bite them before they bite you." },
-    { name: "Organic Kale Smoothie! (ClickMe)", emoji: "🥬 ", description: "Green dye #3 never hurt anybody. (Citation needed.)" },
-    { name: "Socks Candy! (ClickMe)", emoji: "🧦 ", description: "Smells like used socks - but weirdly addictive." },
-    { name: "Ketchup-Soaked Cereal! (ClickMe)", emoji: "🥣 ", description: "Breakfast for those who never give up!" },
-    { name: "Chocolaty Brussels Sprouts! (ClickMe)", emoji: "🍬 ", description: "A betrayal so deep, might need therapy" },
-    { name: "Dragon Egg Omelet! (ClickMe)", emoji: "🥚 ", description: "Rare, illegal, totally worth bounty on ur head." },
-    { name: "Screaming Cheese! (ClickMe)", emoji: "🧀 ", description: "Yells terror when bitten. Yummy & emotionally taxing." },
-    { name: "Unicorn Meat Salad! (ClickMe)", emoji: "🦄 ", description: "A salad that tastes like a rainbow. Literally." },
-    { name: "Goblin Energy Drink! (ClickMe)", emoji: "⚡ ", description: "Battery acid. Feel the unlimited power." },
-    { name: "Wasabi Ice Cream! (ClickMe)", emoji: "🍦 ", description: "Looks innocent until it clears your sinuses & makes you question life choices." },
-    { name: "Kale Donuts! (ClickMe)", emoji: "🍩 ", description: "Healthy enough to eat six - at least that's what we tell ourselves." },
-
-  ]
-
   const [foodIndex, setFoodIndex] = useState(0)
   const [sparklePosition, setSparklePosition] = useState({ left: 0, top: 0 })
 
+  const updateColor = useCallback(() => {
+    setBgColor(getPageColor())
+  }, [])
+
   useEffect(() => {
     initializeColor()
-    setBgColor(getPageColor())
-
-    const updateColor = () => {
-      setBgColor(getPageColor())
-    }
+    updateColor()
 
     const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === 'currentColorIndex') {
+      if (e.key === STORAGE_KEYS.colorIndex) {
         updateColor()
       }
     }
 
-    const handleColorChange = () => {
-      updateColor()
-    }
-
     window.addEventListener('storage', handleStorageChange)
-    window.addEventListener('colorChange', handleColorChange)
+    window.addEventListener(EVENTS.colorChange, updateColor)
 
     return () => {
       window.removeEventListener('storage', handleStorageChange)
-      window.removeEventListener('colorChange', handleColorChange)
+      window.removeEventListener(EVENTS.colorChange, updateColor)
     }
-  }, [])
+  }, [updateColor])
 
-  const handleSparklePosition = (e: any) => {
+  const handleSparklePosition = (e: React.MouseEvent<HTMLSpanElement>) => {
     const rect = e.currentTarget.getBoundingClientRect()
-    const x = rect.width / 2
-    const y = rect.height / 2
-    setSparklePosition({ left: x, top: y })
+    setSparklePosition({ left: rect.width / 2, top: rect.height / 2 })
   }
 
-  const handleFoodClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleFoodClick = () => {
     setFoodIndex((prevIndex) => (prevIndex + 1) % foods.length)
-    const audio = new Audio('/sounds/11L-A_small_click_sound_-1744255707468.mp3')
+    const audio = new Audio(ASSETS.sounds.click)
     audio.play()
   }
 
+  const currentFood = foods[foodIndex]
+
   return (
-    <div className="font-body min-h-screen flex flex-col justify-start items-center pt-8">
-      <h1 className="text-4xl font-heading mb-4 mt-6">Welcome, Internet Traveler</h1>
+    <div className="font-body min-h-screen flex flex-col items-center gap-6 pt-4 md:pt-6 -mt-2 md:-mt-4 w-full">
+      <h1 className="w-full px-4 md:px-8 text-4xl font-heading mb-3 mt-4 md:mt-6 text-center">
+        Welcome, Internet Traveler
+      </h1>
 
       <div
-        className={`p-6 rounded-lg mb-6 text-xl ${theme === 'dark' ? 'text-white' : 'text-white'}`}
+        className="w-full p-6 rounded-lg mb-4 text-xl text-white"
         style={{ backgroundColor: bgColor }}
       >
         <p className="mb-4">
@@ -95,39 +73,14 @@ export default function Home() {
               }}
               onMouseLeave={() => setShowDescription(false)}
             >
-              {foods[foodIndex].emoji} {foods[foodIndex].name}
-
-              <span
-                className="sparkle sparkle-1"
-                style={{
-                  left: `${sparklePosition.left}px`,
-                  top: `${sparklePosition.top}px`
-                }}
-              >
-                ✨
-              </span>
-              <span
-                className="sparkle sparkle-2"
-                style={{
-                  left: `${sparklePosition.left + 20}px`,
-                  top: `${sparklePosition.top - 10}px`
-                }}
-              >
-                ✨
-              </span>
-              <span
-                className="sparkle sparkle-3"
-                style={{
-                  left: `${sparklePosition.left - 20}px`,
-                  top: `${sparklePosition.top + 10}px`
-                }}
-              >
-                ✨
-              </span>
+              {currentFood.emoji} {currentFood.name}
+              <Sparkle offset={0} position={sparklePosition} />
+              <Sparkle offset={1} position={sparklePosition} />
+              <Sparkle offset={2} position={sparklePosition} />
             </span>
 
             <span className={`description ${showDescription ? 'visible' : ''}`}>
-              {foods[foodIndex].description}
+              {currentFood.description}
             </span>
           </span>
         </p>
@@ -136,13 +89,15 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="w-full max-w-screen-lg flex justify-center items-center">
+      <div className="w-full -mx-4 md:-mx-8 flex justify-center items-center">
         <Image
-          src="/Welcome-page-pic.png"
+          src={ASSETS.images.welcomePage}
           alt="Welcome Page Image"
           width={1200}
           height={600}
-          className="w-full h-auto rounded-lg shadow-lg object-contain"
+          sizes="100vw"
+          className="w-full h-auto object-cover rounded-lg"
+          priority
         />
       </div>
 
@@ -179,15 +134,9 @@ export default function Home() {
           z-index: 5;
         }
         
-        .sparkle-1 {
-          animation: sparkleAnim 1.5s infinite;
-        }
-        .sparkle-2 {
-          animation: sparkleAnim 1.5s infinite 0.3s;
-        }
-        .sparkle-3 {
-          animation: sparkleAnim 1.5s infinite 0.6s;
-        }
+        .sparkle-1 { animation: sparkleAnim 1.5s infinite; }
+        .sparkle-2 { animation: sparkleAnim 1.5s infinite 0.3s; }
+        .sparkle-3 { animation: sparkleAnim 1.5s infinite 0.6s; }
         
         .description {
           font-size: 0.85rem;
@@ -234,11 +183,32 @@ export default function Home() {
           }
         }
 
-          h1 {
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.4);
-  }
-  }
+        h1 {
+          text-shadow: 0 0 20px rgba(255, 215, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.4);
+        }
       `}</style>
     </div>
+  )
+}
+
+// Sparkle component for cleaner JSX
+function Sparkle({ offset, position }: { offset: number; position: { left: number; top: number } }) {
+  const offsets = [
+    { left: 0, top: 0 },
+    { left: 20, top: -10 },
+    { left: -20, top: 10 },
+  ]
+  const { left, top } = offsets[offset]
+
+  return (
+    <span
+      className={`sparkle sparkle-${offset + 1}`}
+      style={{
+        left: `${position.left + left}px`,
+        top: `${position.top + top}px`
+      }}
+    >
+      ✨
+    </span>
   )
 }

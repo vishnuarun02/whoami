@@ -1,14 +1,16 @@
-import RecipeCard from "../../components/RecipeCard"
-import { recipes } from "../../data/recipes"
+import RecipeCard from "@/components/cards/RecipeCard"
+import { recipes } from "@/data/recipes"
+import { PageShell } from "@/components/layout/PageShell"
+import { SectionHeader } from "@/components/domain/SectionHeader"
 
 export default function Recipes() {
   return (
-    <div className="font-body">
-      <h1 className="text-4xl font-heading mb-6">Recipes</h1>
-
-      <p className="mb-6">Here are some of my favorite recipes that fuel my coding sessions:</p>
-
-      <div className="space-y-8">
+    <PageShell>
+      <SectionHeader 
+        title="Recipes" 
+        description="Here are some of my favorite recipes that fuel my coding sessions:"
+      />
+      <div className="space-y-6">
         {recipes.map((recipe, index) => (
           <RecipeCard
             key={index}
@@ -18,7 +20,7 @@ export default function Recipes() {
           />
         ))}
       </div>
-    </div>
+    </PageShell>
   )
 }
 

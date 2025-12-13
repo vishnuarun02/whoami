@@ -1,12 +1,13 @@
-import ThoughtCard from "../../components/ThoughtCard"
-import { thoughts } from "../../data/thoughts"
+import ThoughtCard from "@/components/cards/ThoughtCard"
+import { thoughts } from "@/data/thoughts"
+import { PageShell } from "@/components/layout/PageShell"
+import { SectionHeader } from "@/components/domain/SectionHeader"
 
 export default function Thoughts() {
   return (
-    <div className="font-body">
-      <h1 className="text-4xl font-heading mb-6">Thoughts</h1>
-
-      <div className="space-y-8">
+    <PageShell>
+      <SectionHeader title="Thoughts" />
+      <div className="space-y-6">
         {thoughts.map((thought, index) => (
           <ThoughtCard
             key={index}
@@ -15,7 +16,7 @@ export default function Thoughts() {
           />
         ))}
       </div>
-    </div>
+    </PageShell>
   )
 }
 
