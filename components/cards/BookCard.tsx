@@ -14,6 +14,17 @@ interface BookCardProps {
 }
 
 const DESCRIPTION_PREVIEW_LENGTH = 120;
+const QUOTE_LENGTH = 100;
+
+/**
+ * Truncate text at word boundary, not mid-word
+ */
+function truncateAtWord(text: string, maxLength: number): string {
+  if (text.length <= maxLength) return text;
+  const truncated = text.slice(0, maxLength);
+  const lastSpace = truncated.lastIndexOf(" ");
+  return lastSpace > 0 ? truncated.slice(0, lastSpace) : truncated;
+}
 
 export default function BookCard({
   id,
@@ -23,10 +34,14 @@ export default function BookCard({
   description,
   rating,
 }: BookCardProps) {
-  const previewText =
-    description.length > DESCRIPTION_PREVIEW_LENGTH
-      ? `${description.slice(0, DESCRIPTION_PREVIEW_LENGTH)}...`
-      : description;
+  const needsTruncation = description.length > DESCRIPTION_PREVIEW_LENGTH;
+  const previewText = needsTruncation
+    ? truncateAtWord(description, DESCRIPTION_PREVIEW_LENGTH)
+    : description;
+
+  const quoteText = description.length > QUOTE_LENGTH
+    ? truncateAtWord(description, QUOTE_LENGTH)
+    : description;
 
   return (
     <Link href={`${ROUTES.lifelog.bookshelf}/${id}`} className="block">
@@ -36,11 +51,18 @@ export default function BookCard({
           <StarRating rating={rating} className="tracking-wider text-primary" />
         </CardHeader>
 
-        <CardContent className="pt-6">
-          <div className="mb-4 italic text-sm pl-4 border-l-4 border-primary text-primary">
-            "{description}"
-          </div>
-          <p className="text-primary">{previewText}</p>
+        <CardContent className="pt-6 space-y-3">
+          <blockquote className="italic text-sm pl-4 border-l-4 border-primary text-primary">
+            "{quoteText}..."
+          </blockquote>
+          <p className="text-foreground leading-relaxed">
+            {previewText}{needsTruncation && "..."}
+          </p>
+          {needsTruncation && (
+            <span className="inline-block text-sm text-muted-foreground hover:text-primary transition-colors">
+              Continue reading
+            </span>
+          )}
         </CardContent>
 
         <CardFooter className="flex justify-between text-sm text-muted-foreground border-t border-dotted pt-4">
