@@ -41,19 +41,17 @@ export default function Home() {
   const currentFood = foods[foodIndex]
 
   return (
-    <div className="font-body min-h-screen flex flex-col items-center gap-6 pt-4 md:pt-6 -mt-2 md:-mt-4 w-full">
-      <h1 className="w-full px-4 md:px-8 text-4xl font-heading mb-3 mt-4 md:mt-6 text-center">
+    <div className="font-body flex flex-col items-center gap-3 pt-2 md:pt-3 w-full">
+      <h1 className="w-full px-4 md:px-6 text-2xl md:text-3xl font-heading mb-1 mt-1 md:mt-2 text-center">
         Welcome, Internet Traveler
       </h1>
 
       <div
-        className="w-full p-6 rounded-lg mb-4 text-xl text-white"
+        className="w-full p-4 md:p-5 rounded-lg mb-2 text-base md:text-lg text-white"
         style={{ backgroundColor: bgColor }}
       >
-        <p className="mb-4">
-          Only the luckiest dreamers make it this far.
-          Make yourself comfortable while Grandpa Gnome
-          chefs up a yummy bowl of{" "}
+        <p className="mb-2">
+          Only the luckiest dreamers make it this far. Make yourself comfortable while Grandpa Gnome chefs up a yummy bowl of{" "}
           <span className="food-wrapper">
             <span
               className="font-bold cursor-pointer food-item"
@@ -70,11 +68,11 @@ export default function Home() {
           </span>
         </p>
         <p>
-          Once rested, explore the Enchanted Woodlands. The pixel creatures sense your presence standing tall & proud, eager to catch glimpses of the legendary Internet Traveler's arrival.
+          Once rested, explore the Enchanted Woodlands. The pixel creatures sense your presence, eager to catch glimpses of the legendary Internet Traveler's arrival.
         </p>
       </div>
 
-      <div className="w-full -mx-4 md:-mx-8 flex justify-center items-center">
+      <div className="w-full flex justify-center items-center">
         <Image
           src={ASSETS.images.welcomePage}
           alt="Welcome Page Image"
